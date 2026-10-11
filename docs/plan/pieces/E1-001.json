@@ -78,7 +78,7 @@
    "gates.mjs prints the G1–G12 table and exits ≠ 0 when a relevant gate is red or not-checked (deliberately failing fixture).",
    "size.mjs fails when the ceiling is exceeded (test with a 1-byte ceiling).",
    "The commit-msg hook rejects a test commit containing \"Co-Authored-By:\" (temp repo).",
-   "CI runs on push and PR; gh run list shows a green run on the branch."
+   "The CI workflow runs exactly the commands that pass locally (the critic runs them itself); after the commit the run of that commit is watched (gh run watch) and must be green, and every regression re-checks gh run list."
   ],
   "critic": "No blind comparison (infrastructure). The critic clones fresh into a temp dir, runs npm ci, build and gates itself and checks every criterion; the gap is the first criterion without evidence."
  },
