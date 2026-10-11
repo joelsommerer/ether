@@ -1,0 +1,89 @@
+{
+ "id": "E1-001",
+ "order": 1,
+ "milestone": "M0",
+ "kind": "infra",
+ "effort": "M",
+ "ceiling_kb": 2,
+ "title": "Repo, build, CSP shell, gate runner, CI",
+ "goal": "An empty but complete toolchain: dist/blank.html (valid, CSP-locked, self-contained shell) is built from src/ with Node built-ins only, type-checked, unit-tested, gated and checked in CI. Every later piece builds and is judged on this.",
+ "scope": [
+  "Layout: src/ (engine modules with JSDoc), src/template.html, tools/{build,minify,lint,size,gates,serve}.mjs, test/unit (node --test), test/e2e (Playwright), bench/ (oracles, fixtures, stubs), docs/{SPEC.md stub, adr/, plan/}",
+  "package.json (\"type\":\"module\", engines node >=20, scripts build/test/gates/hooks); devDependencies pinned exactly: typescript, @playwright/test, axe-core",
+  "jsconfig.json: checkJs, strict, noEmit, target ES2022, lib DOM + ES2023",
+  "tools/build.mjs: fixed module order, strips module syntax, wraps in one IIFE, minifies, computes sha256 of the inline script and style (node:crypto), injects CSP meta → dist/blank.html; unminified twin dist/blank.dev.html with its own hashes",
+  "tools/minify.mjs: tokenizer-based (strings, template literals with nested ${}, regex vs division, comments), removes comments/whitespace only, never renames, emits \"<\\/script\" inside strings",
+  "tools/lint.mjs: forbids innerHTML/outerHTML assignment, insertAdjacentHTML, document.write, eval, new Function, string timers, TODO/FIXME, http(s) URLs in src/",
+  "tools/size.mjs: bytes of dist/blank.html vs ceiling_kb of the given piece; appends a row to docs/plan/size-log.md",
+  "tools/gates.mjs: runs G1–G12 as far as available, prints a table green/red/not-checked/n.a., exit ≠ 0 on any red or not-checked relevant gate; --piece selects ceilings and relevant gates",
+  "tools/serve.mjs: static server on localhost (node:http) for dist/ and bench/",
+  "CI (GitHub Actions, ubuntu-latest): npm ci, playwright install --with-deps chromium firefox webkit, gates G1–G5, G7–G9, G11; mobile gates run locally only (README)",
+  "tools/hooks/commit-msg + npm run hooks: rejects Co-Authored-By and \"Generated with\" lines; same check in CI for PR commits",
+  "README (all commands), docs/adr/0001-toolchain.md"
+ ],
+ "out_of_scope": [
+  "Engine logic",
+  "Mobile drivers and oracles (E1-002)",
+  "Ledger and model (E1-003)"
+ ],
+ "rules": [
+  {
+   "rule": "Zero runtime dependencies: dist/blank.html contains only code written in this repo.",
+   "source": "PHASE-1.md D1"
+  },
+  {
+   "rule": "No bundler or minifier packages; tools/ uses Node built-ins only.",
+   "source": "PHASE-1.md D1"
+  },
+  {
+   "rule": "CSP meta: default-src 'none'; script-src 'sha256-…'; style-src 'sha256-…'; img-src data: blob:",
+   "source": "PHASE-1.md D16"
+  },
+  {
+   "rule": "Every browser test runs against the minified dist and the dev twin.",
+   "source": "PHASE-1.md G4"
+  },
+  {
+   "rule": "Conventional Commits in English, no AI trailers.",
+   "source": "PHASE-1.md D13"
+  }
+ ],
+ "bar": {
+  "primary": "Metric (non-visual piece): reproducible build, working gate runner, green CI",
+  "secondary": [],
+  "floor": [],
+  "screens": [],
+  "metrics": [
+   "dist/blank.html ≤ 2 KB",
+   "two builds byte-identical",
+   "CI duration recorded in README"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G8",
+   "G11",
+   "G12"
+  ],
+  "criteria": [
+   "npm ci && npm run build produces dist/blank.html and dist/blank.dev.html; a second build is byte-identical (cmp).",
+   "dist/blank.html opens on file:// in Chromium, Firefox and WebKit with 0 console errors, 0 securitypolicyviolation events and 0 network requests (Playwright listeners).",
+   "The CSP hashes in the meta tag equal sha256 of the inline script and style (test recomputes); changing one byte of the script makes the browser block it (test).",
+   "test/unit/minify.test.js covers regex vs division, nested template literals, comment-like strings, \"</script>\" inside strings, ASI-sensitive returns; minified output evaluates identically to the source for every case (node:vm).",
+   "tools/lint.mjs fails on a fixture containing el.innerHTML = x and passes on src/.",
+   "npx tsc -p jsconfig.json reports 0 errors in strict mode.",
+   "gates.mjs prints the G1–G12 table and exits ≠ 0 when a relevant gate is red or not-checked (deliberately failing fixture).",
+   "size.mjs fails when the ceiling is exceeded (test with a 1-byte ceiling).",
+   "The commit-msg hook rejects a test commit containing \"Co-Authored-By:\" (temp repo).",
+   "CI runs on push and PR; gh run list shows a green run on the branch."
+  ],
+  "critic": "No blind comparison (infrastructure). The critic clones fresh into a temp dir, runs npm ci, build and gates itself and checks every criterion; the gap is the first criterion without evidence."
+ },
+ "verify": "local + CI",
+ "depends": [],
+ "blocked_by": [],
+ "decision_note": "dist/ is gitignored; release artifacts are attached to tags (E1-017). Node 20 is on PATH and sufficient."
+}

@@ -1,0 +1,296 @@
+{
+ "version": 1,
+ "date": "2026-10-11",
+ "source": "pieces/*.json",
+ "milestones": {
+  "M0": "Foundation and instruments",
+  "M1": "Core loop",
+  "M2": "Editing completeness",
+  "M3": "Form, compression, hardening, acceptance",
+  "X": "External steps (Joel)"
+ },
+ "pieces": [
+  {
+   "id": "E1-001",
+   "order": 1,
+   "milestone": "M0",
+   "kind": "infra",
+   "title": "Repo, build, CSP shell, gate runner, CI",
+   "effort": "M",
+   "ceiling_kb": 2,
+   "ui": false,
+   "depends": [],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-002",
+   "order": 2,
+   "milestone": "M0",
+   "kind": "infra",
+   "title": "Measurement rig: 5 targets, scenario DSL, oracles, fuzz + shrink",
+   "effort": "L",
+   "ceiling_kb": 2,
+   "ui": false,
+   "depends": [
+    "E1-001"
+   ],
+   "blocked_by": [
+    "X-01",
+    "X-02"
+   ]
+  },
+  {
+   "id": "E1-003",
+   "order": 3,
+   "milestone": "M0",
+   "kind": "model",
+   "title": "Format SPEC v0 + reference model (pure, Node)",
+   "effort": "L",
+   "ceiling_kb": 9,
+   "ui": false,
+   "depends": [
+    "E1-001"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-004",
+   "order": 4,
+   "milestone": "M0",
+   "kind": "design-gate",
+   "title": "Fluid design proposal (Joel gate)",
+   "effort": "S",
+   "ceiling_kb": null,
+   "ui": true,
+   "depends": [
+    "E1-001"
+   ],
+   "blocked_by": [
+    "X-03"
+   ]
+  },
+  {
+   "id": "E1-005",
+   "order": 5,
+   "milestone": "M1",
+   "kind": "model",
+   "title": "Ledger in the document: load, verify, replay, serialize",
+   "effort": "M",
+   "ceiling_kb": 11,
+   "ui": false,
+   "depends": [
+    "E1-003"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-006",
+   "order": 6,
+   "milestone": "M1",
+   "kind": "model",
+   "title": "Ghost DOM generator + exposure modes",
+   "effort": "M",
+   "ceiling_kb": 12.5,
+   "ui": false,
+   "depends": [
+    "E1-005"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-007",
+   "order": 7,
+   "milestone": "M1",
+   "kind": "behavior",
+   "title": "Fluid projection, position mapper, mutation guard",
+   "effort": "L",
+   "ceiling_kb": 16,
+   "ui": false,
+   "depends": [
+    "E1-006",
+    "E1-002"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-008",
+   "order": 8,
+   "milestone": "M1",
+   "kind": "behavior",
+   "title": "Input engine: beforeinput router, inputType matrix, word coalescing",
+   "effort": "L",
+   "ceiling_kb": 20,
+   "ui": false,
+   "depends": [
+    "E1-007"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-009",
+   "order": 9,
+   "milestone": "M1",
+   "kind": "behavior",
+   "title": "Composition and IME reconciliation",
+   "effort": "L",
+   "ceiling_kb": 22,
+   "ui": false,
+   "depends": [
+    "E1-008"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-010",
+   "order": 10,
+   "milestone": "M2",
+   "kind": "behavior",
+   "title": "Undo/redo as appended inverse events",
+   "effort": "M",
+   "ceiling_kb": 23.5,
+   "ui": false,
+   "depends": [
+    "E1-009"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-011",
+   "order": 11,
+   "milestone": "M2",
+   "kind": "behavior",
+   "title": "Formatting: marks, headings, lists, input rules",
+   "effort": "L",
+   "ceiling_kb": 26,
+   "ui": false,
+   "depends": [
+    "E1-010"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-012",
+   "order": 12,
+   "milestone": "M2",
+   "kind": "behavior",
+   "title": "Clipboard and drag-move",
+   "effort": "M",
+   "ceiling_kb": 27.5,
+   "ui": false,
+   "depends": [
+    "E1-011"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-013",
+   "order": 13,
+   "milestone": "M2",
+   "kind": "behavior",
+   "title": "Save and reopen",
+   "effort": "M",
+   "ceiling_kb": 29,
+   "ui": false,
+   "depends": [
+    "E1-012"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-014",
+   "order": 14,
+   "milestone": "M3",
+   "kind": "visual",
+   "title": "Fluid design implementation + read mode",
+   "effort": "M",
+   "ceiling_kb": 31,
+   "ui": true,
+   "depends": [
+    "E1-013",
+    "E1-004"
+   ],
+   "blocked_by": [
+    "X-03"
+   ]
+  },
+  {
+   "id": "E1-015",
+   "order": 15,
+   "milestone": "M3",
+   "kind": "model",
+   "title": "Ledger compression",
+   "effort": "M",
+   "ceiling_kb": 32,
+   "ui": false,
+   "depends": [
+    "E1-013"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-016",
+   "order": 16,
+   "milestone": "M3",
+   "kind": "infra",
+   "title": "Performance and hardening",
+   "effort": "M",
+   "ceiling_kb": 32,
+   "ui": false,
+   "depends": [
+    "E1-014",
+    "E1-015"
+   ],
+   "blocked_by": []
+  },
+  {
+   "id": "E1-017",
+   "order": 17,
+   "milestone": "M3",
+   "kind": "infra",
+   "title": "Phase 1 acceptance, SPEC v0.1, v0.1.0 release draft, PR",
+   "effort": "S",
+   "ceiling_kb": 32,
+   "ui": false,
+   "depends": [
+    "E1-016"
+   ],
+   "blocked_by": [
+    "X-04"
+   ]
+  }
+ ],
+ "external": [
+  {
+   "id": "X-01",
+   "title": "sudo safaridriver --enable (once, admin password)",
+   "needed_by": [
+    "E1-002"
+   ],
+   "when": "before the run"
+  },
+  {
+   "id": "X-02",
+   "title": "Settings app of simulator \"Ether iPhone 17 Pro\": Safari › Advanced › Remote Automation on",
+   "needed_by": [
+    "E1-002"
+   ],
+   "when": "before the run"
+  },
+  {
+   "id": "X-03",
+   "title": "Approve the Fluid design proposal (E1-004) in docs/adr/0002-fluid-design.md",
+   "needed_by": [
+    "E1-014"
+   ],
+   "when": "during the run"
+  },
+  {
+   "id": "X-04",
+   "title": "Manual IME checklist (dead keys, Japanese, Korean, Pinyin, autocorrect, dictation, iOS predictive/swipe, Gboard glide/voice)",
+   "needed_by": [
+    "E1-017"
+   ],
+   "when": "before E1-017"
+  }
+ ]
+}

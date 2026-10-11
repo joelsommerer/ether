@@ -1,0 +1,9 @@
+{
+ "id": "X-02",
+ "milestone": "X",
+ "title": "Settings app of simulator \"Ether iPhone 17 Pro\": Safari › Advanced › Remote Automation on",
+ "needed_by": [
+  "E1-002"
+ ],
+ "when": "before the run"
+}

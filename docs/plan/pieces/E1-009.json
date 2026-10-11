@@ -1,0 +1,73 @@
+{
+ "id": "E1-009",
+ "order": 9,
+ "milestone": "M1",
+ "kind": "behavior",
+ "effort": "L",
+ "ceiling_kb": 22,
+ "title": "Composition and IME reconciliation",
+ "goal": "Composed input (dead keys, Japanese/Chinese/Korean IMEs, Android Gboard, iOS predictive/autocorrect) produces correct ledger events without any native mutation surviving outside an active composition.",
+ "scope": [
+  "compositionstart: freeze rendering of the composing block; only the composing text node may change",
+  "compositionend (+ browser-specific input ordering): read the committed text, restore the DOM from state, apply ins/del via the ledger, re-render, restore the caret within the same task",
+  "Android: insertCompositionText for all typing, Gboard deletions via compositions",
+  "Korean per-syllable composition; Safari ordering quirks; cancel on blur or selection jump",
+  "Guard allowlist active only during a composition"
+ ],
+ "out_of_scope": [
+  "Rich IME UI (candidate windows are native)"
+ ],
+ "rules": [
+  {
+   "rule": "insertCompositionText is not cancelable → reconcile.",
+   "source": "Input Events L2; PHASE-1 D2"
+  },
+  {
+   "rule": "I5 allowlist only for the composing node during composition; I1 holds again in the same task after compositionend.",
+   "source": "PHASE-1.md §5"
+  },
+  {
+   "rule": "One ledger event per committed composition (or coalesced word), never per update.",
+   "source": "PHASE-1.md D14"
+  }
+ ],
+ "bar": {
+  "primary": "B1 native oracle (composed text)",
+  "secondary": [
+   "B2 ProseMirror where the driver supports composition"
+  ],
+  "floor": [],
+  "screens": [],
+  "metrics": []
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G8",
+   "G9",
+   "G10",
+   "G11",
+   "G12"
+  ],
+  "criteria": [
+   "CDP composition scenarios (dead keys ü/é/ñ/â, Japanese kana→kanji with candidate switch, Korean, Pinyin, Escape cancel, composition replacing a cross-block selection) equal the native oracle on chromium and android-chrome.",
+   "Fuzz with composition steps: 10 000 (chromium) and 1 000 (android-chrome) sequences, 0 violations.",
+   "Android emulator: sequences typed through the real Gboard soft keyboard equal the native oracle.",
+   "iOS simulator: typing via the simulator keyboard including an autocorrect replacement and a predictive-bar tap equals the native oracle.",
+   "Firefox/WebKit desktop composition is listed as unsupported-by-driver and mapped to X-04 rows.",
+   "No ledger event per intermediate composition update."
+  ],
+  "critic": "Differential plus criteria; mobile evidence (screen recordings or step logs) is mandatory."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-008"
+ ],
+ "blocked_by": [],
+ "decision_note": "Hardest piece; expect several rounds."
+}

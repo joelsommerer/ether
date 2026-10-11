@@ -1,0 +1,9 @@
+{
+ "id": "X-01",
+ "milestone": "X",
+ "title": "sudo safaridriver --enable (once, admin password)",
+ "needed_by": [
+  "E1-002"
+ ],
+ "when": "before the run"
+}

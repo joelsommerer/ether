@@ -1,0 +1,71 @@
+{
+ "id": "E1-005",
+ "order": 5,
+ "milestone": "M1",
+ "kind": "model",
+ "effort": "M",
+ "ceiling_kb": 11,
+ "title": "Ledger in the document: load, verify, replay, serialize",
+ "goal": "The document boots from its own <script type=\"application/document-ledger\">, verifies the chain, replays to state, and serializes itself to a clean HTML string (engine + updated ledger, no rendered DOM).",
+ "scope": [
+  "Boot: read the ledger before rendering; parse, verify, replay; integrity failure → banner + read-only; unknown fmt/op → read-only + message",
+  "Pristine template capture at boot (documentElement.outerHTML before any rendering, ledger replaced by a placeholder); serialize = \"<!doctype html>\" + template with the new ledger",
+  "window.webdoc v0: version, state(), hash(), ledger(), selection() (stub until E1-007), toHTML(); documented in SPEC.md",
+  "Browser append path: event → canonical line → in-memory ledger text, heads update"
+ ],
+ "out_of_scope": [
+  "Input and rendering (E1-006+)",
+  "Save UI (E1-013)"
+ ],
+ "rules": [
+  {
+   "rule": "A typed \"</script>\" or \"<!--\" never breaks the file.",
+   "source": "PHASE-1.md I7"
+  },
+  {
+   "rule": "serialize(load(serialize(x))) is byte-identical to serialize(x).",
+   "source": "PHASE-1.md I7"
+  },
+  {
+   "rule": "Engine script bytes in a saved file equal dist (CSP hash stays valid).",
+   "source": "PHASE-1.md D16"
+  }
+ ],
+ "bar": {
+  "primary": "Metric",
+  "secondary": [],
+  "floor": [],
+  "screens": [],
+  "metrics": [
+   "load of the 10k-word fixture ≤ 300 ms desktop / ≤ 1 s mobile"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G6",
+   "G7",
+   "G8",
+   "G11",
+   "G12"
+  ],
+  "criteria": [
+   "Fixtures (empty, EN 10k words, DE, stress with </script>, <!--, U+2028, ZWJ emoji, CJK, RTL) load on all 5 targets; webdoc.hash() equals the Node reference hash.",
+   "serialize → load in a fresh page gives an equal hash; a second serialize is byte-identical, on all targets.",
+   "The saved HTML has exactly one ledger script and one engine script; the browser executes it without CSP violation.",
+   "Tampered fixtures (byte flip, deleted line, swapped lines) show the integrity banner, are read-only and log no exception.",
+   "An unknown-op fixture opens read-only with a message.",
+   "Load + verify + replay of the 10k-word fixture ≤ 300 ms on each desktop target and ≤ 1 s on each mobile target (values recorded)."
+  ],
+  "critic": "Criteria-based on all 5 targets; the gap is the first unproven criterion."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-003"
+ ],
+ "blocked_by": [],
+ "decision_note": ""
+}

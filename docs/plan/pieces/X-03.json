@@ -1,0 +1,9 @@
+{
+ "id": "X-03",
+ "milestone": "X",
+ "title": "Approve the Fluid design proposal (E1-004) in docs/adr/0002-fluid-design.md",
+ "needed_by": [
+  "E1-014"
+ ],
+ "when": "during the run"
+}

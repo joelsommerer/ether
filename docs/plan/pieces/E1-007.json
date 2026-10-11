@@ -1,0 +1,69 @@
+{
+ "id": "E1-007",
+ "order": 7,
+ "milestone": "M1",
+ "kind": "behavior",
+ "effort": "L",
+ "ceiling_kb": 16,
+ "title": "Fluid projection, position mapper, mutation guard",
+ "goal": "Project the ghost into the visible contenteditable Fluid surface with keyed reconciliation, map positions model ↔ DOM in both directions, restore the selection after every render and catch every foreign mutation.",
+ "scope": [
+  "Projection: clone ghost nodes with data-b keys; empty blocks get a <br data-ph> placeholder that the mapper ignores",
+  "Reconcile only changed blocks",
+  "Position mapper DOM (node, offset) ↔ model (block, offset), grapheme-safe snapping; projection-agnostic interface for Solid/Ether later",
+  "selectionchange → model selection; restore the DOM selection after render (no caret jumps); scroll caret into view (nearest)",
+  "MutationObserver guard: renderer-tagged mutations allowed; anything else → violation event (dev build throws, prod re-renders from state)",
+  "Read-mode switch (contenteditable=false, same projection); styling comes in E1-014"
+ ],
+ "out_of_scope": [
+  "Text input (E1-008)",
+  "Styling beyond the functional minimum before X-03"
+ ],
+ "rules": [
+  {
+   "rule": "Invariants I1, I5, I6.",
+   "source": "PHASE-1.md §5"
+  },
+  {
+   "rule": "The mapper interface is projection-agnostic.",
+   "source": "PHASE-1.md §1"
+  }
+ ],
+ "bar": {
+  "primary": "B1 native oracle for caret placement and navigation",
+  "secondary": [],
+  "floor": [],
+  "screens": [],
+  "metrics": [
+   "single-block re-render ≤ 2 ms p95 desktop on the 10k-word doc"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G8",
+   "G9",
+   "G12"
+  ],
+  "criteria": [
+   "Fixture ledgers replayed step by step: I1, I2 and I6 hold after every step on all 5 targets.",
+   "200 random click/tap points on the fixture: the model selection equals the mapping of the caret the browser placed, on all targets.",
+   "Native navigation scenarios (arrows, Home/End, word jumps, Shift-selection): model selection equals DOM selection, never inside a grapheme (ZWJ emoji, flags, combining marks).",
+   "A foreign mutation injected by the test is detected and re-rendered to the state; 0 violations in all other scenarios.",
+   "Re-rendering one block of the 10k-word doc touches only that block and costs ≤ 2 ms p95 on desktop."
+  ],
+  "critic": "Differential vs B1 for caret placement (anonymized X/Y, divergences judged blind) plus criteria."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-006",
+  "E1-002"
+ ],
+ "blocked_by": [],
+ "decision_note": ""
+}

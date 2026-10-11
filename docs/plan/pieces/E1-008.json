@@ -1,0 +1,81 @@
+{
+ "id": "E1-008",
+ "order": 8,
+ "milestone": "M1",
+ "kind": "behavior",
+ "effort": "L",
+ "ceiling_kb": 20,
+ "title": "Input engine: beforeinput router, inputType matrix, word coalescing",
+ "goal": "Every user intent arrives via beforeinput (or a documented keydown fallback), is prevented, becomes a transaction, is appended to the ledger and rendered, with text and caret outcomes matching native behaviour per browser.",
+ "scope": [
+  "docs/input-matrix.md lists every Input Events Level 2 inputType as handled / delegated / blocked with its test id",
+  "Handled here: insertText, insertReplacementText, insertLineBreak, insertParagraph, insertFromYank, insertTranspose, deleteContentBackward/Forward, deleteWordBackward/Forward, deleteSoftLineBackward/Forward, deleteEntireSoftLine, deleteHardLineBackward/Forward, deleteContent",
+  "Delegated: insertCompositionText (E1-009), historyUndo/Redo (E1-010), formatBold/Italic/Remove + insertUnorderedList (E1-011), insertFromPaste/PasteAsQuotation/Drop, deleteByCut/Drag (E1-012)",
+  "Blocked (preventDefault, no-op, tested): all other types; unknown types blocked with one console.warn",
+  "getTargetRanges() as the source of the browser’s own grapheme/word/line ranges; fallback via Intl.Segmenter + mapper",
+  "Selection-replacing input across blocks = one transaction (del + joins + ins)",
+  "Word-level coalescing (D14) with a buffered pending event",
+  "Enter splits the block; Shift+Enter inserts \\n rendered as <br>"
+ ],
+ "out_of_scope": [
+  "Composition",
+  "Undo",
+  "Formatting",
+  "Clipboard"
+ ],
+ "rules": [
+  {
+   "rule": "preventDefault immediately; no native mutation survives.",
+   "source": "Spec §2"
+  },
+  {
+   "rule": "Plain-text outcomes match the native oracle of the same browser (I4).",
+   "source": "PHASE-1.md §5"
+  },
+  {
+   "rule": "No keydown-based text insertion except documented fallbacks.",
+   "source": "PHASE-1.md D2"
+  }
+ ],
+ "bar": {
+  "primary": "B1 native oracle (text + caret per browser)",
+  "secondary": [
+   "B2 ProseMirror for Enter/Backspace at block boundaries"
+  ],
+  "floor": [],
+  "screens": [],
+  "metrics": [
+   "input → committed render p95 ≤ 4 ms desktop / ≤ 16 ms mobile on the 10k-word doc"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G8",
+   "G9",
+   "G10",
+   "G11",
+   "G12"
+  ],
+  "criteria": [
+   "input-matrix.md covers all L2 types; every handled type has ≥ 1 scenario per target, or \"not emitted by this browser\" is documented with evidence.",
+   "Plain-text corpus: final text and caret equal the native oracle on each of the 5 targets (0 divergences, or each divergence judged blind in our favour).",
+   "Fuzz without composition: 10 000 sequences per desktop target, 1 000 per mobile target, I1–I8 hold, 0 violations.",
+   "Typing \"Hello wonderful world.\" produces 3–4 ledger events, never one per keystroke; 1 s idle and caret jumps flush.",
+   "Latency p95 ≤ 4 ms desktop and ≤ 16 ms mobile on the 10k-word doc.",
+   "macOS Ctrl+T (transpose) and Ctrl+K/Ctrl+Y (kill/yank) match native in WebKit and Chromium."
+  ],
+  "critic": "Differential (anonymized, divergences judged blind) plus criteria; the gap is the first lost divergence or unproven criterion."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-007"
+ ],
+ "blocked_by": [],
+ "decision_note": ""
+}

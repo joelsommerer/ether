@@ -1,0 +1,65 @@
+{
+ "id": "E1-016",
+ "order": 16,
+ "milestone": "M3",
+ "kind": "infra",
+ "effort": "M",
+ "ceiling_kb": 32,
+ "title": "Performance and hardening",
+ "goal": "All performance and robustness budgets hold on every target; the long tail found by extended fuzzing is fixed.",
+ "scope": [
+  "100 000 fuzz sequences per desktop target, 10 000 per mobile target",
+  "50k-word stress document; memory growth; 1-hour scripted typing session",
+  "Minified vs dev parity; size reduction where possible"
+ ],
+ "out_of_scope": [
+  "New features"
+ ],
+ "rules": [
+  {
+   "rule": "No gate or threshold relaxed without Joel.",
+   "source": "PHASE-1.md §6"
+  }
+ ],
+ "bar": {
+  "primary": "Metric",
+  "secondary": [],
+  "floor": [],
+  "screens": [],
+  "metrics": [
+   "p95 ≤ 8 ms desktop / ≤ 33 ms mobile on 50k words",
+   "bounded heap growth",
+   "dist ≤ 32 KB"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G7",
+   "G8",
+   "G9",
+   "G10",
+   "G11",
+   "G12"
+  ],
+  "criteria": [
+   "Extended fuzz: 0 violations on all targets.",
+   "Latency p95 ≤ 8 ms desktop and ≤ 33 ms mobile on the 50k-word doc.",
+   "Heap after a 1-hour session within 2× of the heap after load.",
+   "dist/blank.html ≤ 32 KB."
+  ],
+  "critic": "Criteria-based."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-014",
+  "E1-015"
+ ],
+ "blocked_by": [],
+ "decision_note": ""
+}

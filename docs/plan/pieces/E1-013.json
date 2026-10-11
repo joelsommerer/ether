@@ -1,0 +1,65 @@
+{
+ "id": "E1-013",
+ "order": 13,
+ "milestone": "M2",
+ "kind": "behavior",
+ "effort": "M",
+ "ceiling_kb": 29,
+ "title": "Save and reopen",
+ "goal": "Cmd/Ctrl+S persists the document as a self-contained .html; reopening yields the identical state on every target.",
+ "scope": [
+  "Chromium: showSaveFilePicker on first save, silent re-save with the remembered handle in the session",
+  "Safari, Firefox, iOS, Android: download via Blob + a[download], file name from the title slug + \".html\"",
+  "Dirty indicator; beforeunload warning only when dirty; pending event flushed before save",
+  "Saved file = webdoc.toHTML() (E1-005); no data in URL parameters"
+ ],
+ "out_of_scope": [
+  "Autosave/drafts (R10)",
+  "In-place save outside Chromium (R3)"
+ ],
+ "rules": [
+  {
+   "rule": "A saved file opens offline with 0 network requests and an identical hash.",
+   "source": "PHASE-1.md I7, G11"
+  },
+  {
+   "rule": "Platform limitations are documented in README.",
+   "source": "PHASE-1.md R3"
+  }
+ ],
+ "bar": {
+  "primary": "Metric: 5 × 5 cross-target round trip",
+  "secondary": [],
+  "floor": [],
+  "screens": [],
+  "metrics": []
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G7",
+   "G8",
+   "G11",
+   "G12"
+  ],
+  "criteria": [
+   "On each of the 5 targets: scenario → save → open the saved file in a fresh context → equal hash, equal text, engine bytes equal dist.",
+   "Chromium: the second save overwrites the same file without a picker.",
+   "beforeunload prompts only when dirty.",
+   "A file saved on target A opens on every other target with an equal hash (5 × 5 matrix).",
+   "iOS: the download lands in Files (simulator container listing); the opening behaviour is documented (R4)."
+  ],
+  "critic": "Criteria-based on all 5 targets."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-012"
+ ],
+ "blocked_by": [],
+ "decision_note": ""
+}

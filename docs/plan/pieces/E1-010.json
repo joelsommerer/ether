@@ -1,0 +1,64 @@
+{
+ "id": "E1-010",
+ "order": 10,
+ "milestone": "M2",
+ "kind": "behavior",
+ "effort": "M",
+ "ceiling_kb": 23.5,
+ "title": "Undo/redo as appended inverse events",
+ "goal": "Undo and redo append inverse transactions (never remove events), restore the selection and group like users expect.",
+ "scope": [
+  "Session-local history of the own actor’s events; undo event = concrete inverse ops + u:<id>; redo = inverse of the undo",
+  "Mod+Z, Shift+Mod+Z, Ctrl+Y keydown plus historyUndo/historyRedo beforeinput",
+  "Flush the pending coalesced event first; restore the selection from before the original event",
+  "After reopen the stack is empty (documented)"
+ ],
+ "out_of_scope": [
+  "Gesture undo on mobile if no event is emitted (R2)"
+ ],
+ "rules": [
+  {
+   "rule": "Append-only: undo never deletes or rewrites ledger lines.",
+   "source": "Spec §1"
+  },
+  {
+   "rule": "I3 holds after every undo/redo.",
+   "source": "PHASE-1.md §5"
+  }
+ ],
+ "bar": {
+  "primary": "B2 ProseMirror undo grouping",
+  "secondary": [
+   "B1 where comparable"
+  ],
+  "floor": [],
+  "screens": [],
+  "metrics": []
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G8",
+   "G12"
+  ],
+  "criteria": [
+   "Fuzz with undo/redo weight on all targets: undo-all returns to the load hash, redo-all to the final hash, I1–I8 hold.",
+   "A typed sentence undoes word by word; formatting and paragraph splits are separate steps.",
+   "The selection after undo/redo equals the selection before the original event.",
+   "The ledger line count only grows during undo/redo.",
+   "Shortcuts work on all 5 targets (hardware keyboard on simulator/emulator)."
+  ],
+  "critic": "Differential vs B2 grouping plus criteria."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-009"
+ ],
+ "blocked_by": [],
+ "decision_note": ""
+}

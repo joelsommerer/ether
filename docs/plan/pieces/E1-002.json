@@ -1,0 +1,90 @@
+{
+ "id": "E1-002",
+ "order": 2,
+ "milestone": "M0",
+ "kind": "infra",
+ "effort": "L",
+ "ceiling_kb": 2,
+ "title": "Measurement rig: 5 targets, scenario DSL, oracles, fuzz + shrink",
+ "goal": "One harness drives the same scripted input against our document, the native contenteditable oracle and the ProseMirror basic example on all five targets and checks the invariants after every step. Every later piece is judged with this instrument, so it must be trustworthy before the engine exists.",
+ "scope": [
+  "Targets: chromium, firefox, webkit (Playwright desktop); ios-safari (W3C WebDriver client written with fetch against safaridriver, capabilities platformName iOS + safari:useSimulator + safari:deviceName \"Ether iPhone 17 Pro\"); android-chrome (AVD \"ether\" from system-images;android-36;google_apis;arm64-v8a, Chrome via adb forward tcp:9222 localabstract:chrome_devtools_remote, Playwright connectOverCDP)",
+  "tools/devices.mjs up|down|status: creates/boots/shuts down only \"Ether iPhone 17 Pro\" (iOS 26.5) and AVD \"ether\" (headless); every simctl/adb call with a timeout",
+  "Host reachability: iOS simulator via localhost, Android via adb reverse",
+  "Scenario DSL test/scenarios/*.json: text, key (+mods), select (block/offset pairs or DOM paths), compose (sequence of composition strings + commit), paste (text/html), undo, redo, shortcut, click/tap at fixture coordinates",
+  "Composition driver: CDP Input.imeSetComposition/insertText on chromium and android-chrome; elsewhere the step is reported \"unsupported-by-driver\"",
+  "bench/oracle/native.html: plain contenteditable recording text + caret after each step",
+  "ProseMirror runner for https://prosemirror.net/examples/basic/: records block types, text, marks and selection after each step; records the prosemirror-view version",
+  "Fuzz driver: in-repo seeded PRNG, weighted action alphabet (PHASE-1 §5), sequences of 50–200 steps; identical action lists for identical seeds on every target",
+  "Shrinker: delta-debugging of failing seeds to a minimal scenario saved under test/scenarios/regressions/",
+  "Invariant checks I1–I8 as functions over window.webdoc + DOM, with unit tests on synthetic inputs; engine-dependent checks activate once the API exists",
+  "Reports: JSON + markdown per run (target × scenario × step) in test-results/ (gitignored), summarized by gates.mjs"
+ ],
+ "out_of_scope": [
+  "Engine code",
+  "Judging",
+  "Visual bars (scout)"
+ ],
+ "rules": [
+  {
+   "rule": "A driver limitation is never a pass: unsupported steps make the target result \"incomplete\".",
+   "source": "PHASE-1.md §6"
+  },
+  {
+   "rule": "Only \"Ether iPhone 17 Pro\" and AVD \"ether\" may be created, booted or modified; every other simulator and AVD on the machine is off limits.",
+   "source": "PHASE-1.md §11"
+  },
+  {
+   "rule": "Same seed → same action list on all targets.",
+   "source": "PHASE-1.md §5"
+  },
+  {
+   "rule": "ProseMirror results are our own measurements (JSON) and may be committed; third-party screenshots may not.",
+   "source": "PHASE-1.md §7"
+  }
+ ],
+ "bar": {
+  "primary": "Metric: the rig reproduces native behaviour and catches a planted bug on all five targets",
+  "secondary": [
+   "B1 native oracle",
+   "B2 ProseMirror basic example"
+  ],
+  "floor": [],
+  "screens": [],
+  "metrics": [
+   "≥ 60 scenarios on all 5 targets",
+   "fuzz throughput per target recorded",
+   "planted bug shrunk to ≤ 5 steps"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G6",
+   "G12"
+  ],
+  "criteria": [
+   "node tools/devices.mjs up creates/boots only the two Ether devices; xcrun simctl list and emulator -list-avds before/after show all other devices unchanged.",
+   "The scenario corpus has ≥ 60 scenarios covering every inputType of the Phase-1 matrix; each runs on the native oracle on all 5 targets with stored per-target results.",
+   "Composition steps run via CDP on chromium and android-chrome; on firefox, webkit and ios-safari they are reported as unsupported-by-driver.",
+   "The ProseMirror runner records structure and selection for the structural scenarios on the 3 desktop targets and both mobile targets; the prosemirror-view version is recorded.",
+   "The same seed yields an identical action-list hash on all targets; 1000 sequences against the oracle per desktop target complete and the duration is recorded.",
+   "A deliberately broken stub (bench/stubs/broken.html, e.g. loses \"ü\" after Backspace) is detected by the fuzzer and shrunk to ≤ 5 steps.",
+   "I1–I8 exist as documented functions (test/README.md) with unit tests.",
+   "Every adb/simctl invocation in tools/ and test/ is wrapped with a timeout (grep check)."
+  ],
+  "critic": "No blind comparison. The critic runs node tools/gates.mjs --piece E1-002 --targets all itself, reads the reports and reproduces the planted-bug detection; the gap is the first unproven criterion or the first target that does not run."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-001"
+ ],
+ "blocked_by": [
+  "X-01",
+  "X-02"
+ ],
+ "decision_note": "Driver capabilities are the honest ceiling of \"all hard\": composition automation exists only via CDP. The rest is covered by simulator keyboard scripts (E1-009) and X-04. If the google_apis image lacks Chrome or CDP access, pause and ask Joel (R8)."
+}

@@ -1,0 +1,63 @@
+{
+ "id": "E1-011",
+ "order": 11,
+ "milestone": "M2",
+ "kind": "behavior",
+ "effort": "L",
+ "ceiling_kb": 26,
+ "title": "Formatting: marks, headings, lists, input rules",
+ "goal": "Bold/italic marks and paragraph/H1–H3/bullet-list block types via shortcuts and markdown-style input rules, with ProseMirror-like structural behaviour.",
+ "scope": [
+  "Mod+B / Mod+I via formatBold/formatItalic or keydown fallback; formatRemove",
+  "Stored marks at a collapsed caret (toggle, then type); caret movement clears them",
+  "Input rules at block start: \"# \", \"## \", \"### \" → heading; \"- \" / \"* \" → list item; undo restores the literal text",
+  "Block-type shortcuts as in the ProseMirror example keymap (scout extracts the exact keys)",
+  "Enter at end of heading → paragraph; Enter on empty list item → paragraph; Backspace at start of list item → paragraph"
+ ],
+ "out_of_scope": [
+  "Ordered and nested lists, links, other marks"
+ ],
+ "rules": [
+  {
+   "rule": "Canonical mark structure (I2 goldens).",
+   "source": "PHASE-1.md §5"
+  },
+  {
+   "rule": "The bar is behaviour: no ProseMirror code is copied.",
+   "source": "PHASE-1.md §7"
+  }
+ ],
+ "bar": {
+  "primary": "B2 ProseMirror basic example (structure + marks per step)",
+  "secondary": [],
+  "floor": [],
+  "screens": [],
+  "metrics": []
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G8",
+   "G9",
+   "G12"
+  ],
+  "criteria": [
+   "Structural corpus (≥ 40 scenarios): block types, text and marks equal ProseMirror per target, or each divergence judged blind in our favour.",
+   "Fuzz with formatting weights: I1–I8 hold on all targets.",
+   "The ghost exposes headings and lists correctly (a11y snapshot).",
+   "Stored marks: Mod+B then typing yields bold text; moving the caret clears the stored mark."
+  ],
+  "critic": "Differential vs B2 (anonymized) plus criteria."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-010"
+ ],
+ "blocked_by": [],
+ "decision_note": ""
+}

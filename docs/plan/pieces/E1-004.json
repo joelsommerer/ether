@@ -1,0 +1,68 @@
+{
+ "id": "E1-004",
+ "order": 4,
+ "milestone": "M0",
+ "kind": "design-gate",
+ "effort": "S",
+ "ceiling_kb": null,
+ "title": "Fluid design proposal (Joel gate)",
+ "goal": "Before any styling reaches the engine, Joel approves a concrete visual interpretation of the Fluid state for writing and reading.",
+ "scope": [
+  "Five bullets with exact values: type stacks (system serif/sans per OS), sizes, line height, measure in ch; vertical rhythm; light/dark colours (body contrast ≥ 7:1); caret and selection colours; read-mode multi-column threshold; minimal chrome (mode toggle, save state)",
+  "One isolated prototype bench/design/fluid-prototype.html (static, EN + DE fixtures, no engine)",
+  "Screenshots at 390/768/1280/1920 px × light/dark via Playwright, placed next to the bar screenshots in ~/DEV/ether/bars/ for Joel",
+  "Informational blind pre-check by the critic vs bar and floor, attached for Joel"
+ ],
+ "out_of_scope": [
+  "Engine integration (E1-014)"
+ ],
+ "rules": [
+  {
+   "rule": "Aesthetic work without a concrete reference: first 5 bullets with concrete values and one isolated prototype; real stylesheets only after approval.",
+   "source": "Joel global rule"
+  },
+  {
+   "rule": "System font stacks only in Phase 1 (offline; web fonts on demand come later).",
+   "source": "Spec constraint 2"
+  },
+  {
+   "rule": "Do not copy layout, text or brand of the bars.",
+   "source": "PHASE-1.md §7"
+  }
+ ],
+ "bar": {
+  "primary": "iA Writer (writing surface) + practicaltypography.com (reading)",
+  "secondary": [
+   "press.stripe.com (fallback)"
+  ],
+  "floor": [
+   "UA-default rendering of the same fixture"
+  ],
+  "screens": [
+   "~/DEV/ether/bars/visual/"
+  ],
+  "metrics": [
+   "8 prototype screenshots"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G12"
+  ],
+  "criteria": [
+   "Five bullets with numeric values in docs/adr/0002-fluid-design.md (status: proposed).",
+   "8 prototype screenshots (4 viewports × 2 themes) exist and are referenced.",
+   "The blind pre-check result is attached.",
+   "X-03: Joel approval recorded in the ADR (status: accepted)."
+  ],
+  "critic": "Informational blind pre-check only; the gate is Joel. After delivery the piece waits for Joel; the loop continues with E1-005."
+ },
+ "verify": "Joel",
+ "depends": [
+  "E1-001"
+ ],
+ "blocked_by": [
+  "X-03"
+ ],
+ "decision_note": "Placed early so the approval arrives while the engine pieces run."
+}

@@ -1,0 +1,75 @@
+{
+ "id": "E1-014",
+ "order": 14,
+ "milestone": "M3",
+ "kind": "visual",
+ "effort": "M",
+ "ceiling_kb": 31,
+ "title": "Fluid design implementation + read mode",
+ "goal": "The approved design in the engine: typography, rhythm, light/dark, caret/selection colours, minimal chrome (mode toggle, save state), responsive behaviour, read mode with CSS multi-column on wide viewports.",
+ "scope": [
+  "CSS with exactly the approved values from docs/adr/0002-fluid-design.md",
+  "prefers-color-scheme; prefers-reduced-motion",
+  "Read-mode toggle (shortcut + button); columns only in read mode above the approved threshold"
+ ],
+ "out_of_scope": [
+  "Print/PDF (Phase 7)",
+  "Web fonts"
+ ],
+ "rules": [
+  {
+   "rule": "Only the approved values; deviations need Joel.",
+   "source": "X-03"
+  },
+  {
+   "rule": "Do not copy layout, text or brand of the bars.",
+   "source": "PHASE-1.md §7"
+  }
+ ],
+ "bar": {
+  "primary": "iA Writer (writing surface) + practicaltypography.com (reading)",
+  "secondary": [
+   "press.stripe.com (fallback)"
+  ],
+  "floor": [
+   "UA-default rendering of the same fixture"
+  ],
+  "screens": [
+   "~/DEV/ether/bars/visual/"
+  ],
+  "metrics": [
+   "body contrast ≥ 7:1, UI ≥ 4.5:1",
+   "CLS 0 while typing"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G7",
+   "G8",
+   "G9",
+   "G12"
+  ],
+  "criteria": [
+   "Screens of the EN and DE fixtures at 390/768/1280/1920 × light/dark on chromium, webkit, firefox, ios-safari and android-chrome.",
+   "Computed contrast: body ≥ 7:1, UI ≥ 4.5:1.",
+   "No layout shift while typing (CLS 0 in a scenario run).",
+   "Read mode: columns above the threshold, none below; the ghost stays inert; find count 1."
+  ],
+  "critic": "Blind visual vs the bar and vs the floor (neutral file names, labels stripped); ours must win both."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-013",
+  "E1-004"
+ ],
+ "blocked_by": [
+  "X-03"
+ ],
+ "decision_note": ""
+}

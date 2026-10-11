@@ -1,0 +1,64 @@
+{
+ "id": "E1-017",
+ "order": 17,
+ "milestone": "M3",
+ "kind": "infra",
+ "effort": "S",
+ "ceiling_kb": 32,
+ "title": "Phase 1 acceptance, SPEC v0.1, v0.1.0 release draft, PR",
+ "goal": "Freeze SPEC v0.1, run the full regression on all 5 targets, collect Joel’s IME checklist, prepare v0.1.0 and open the PR to main.",
+ "scope": [
+  "Full gates on all targets",
+  "X-04 checklist recorded in docs/plan/ime-checklist.md",
+  "SPEC v0.1 frozen; tag v0.1.0; GitHub release as draft with dist/blank.html and a demo document",
+  "PR feature/phase1-core-loop → main, not merged"
+ ],
+ "out_of_scope": [
+  "Publishing the release (Joel)",
+  "Merging (Joel)"
+ ],
+ "rules": [
+  {
+   "rule": "Release stays a draft; the PR stays open.",
+   "source": "PHASE-1.md D12"
+  }
+ ],
+ "bar": {
+  "primary": "Metric: everything green, checklist complete",
+  "secondary": [],
+  "floor": [],
+  "screens": [],
+  "metrics": []
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G7",
+   "G8",
+   "G9",
+   "G10",
+   "G11",
+   "G12"
+  ],
+  "criteria": [
+   "All gates green on all 5 targets.",
+   "Every X-04 row passes or is documented as a known limitation with evidence.",
+   "SPEC v0.1 tagged; release draft contains dist/blank.html and the demo document.",
+   "PR open with a summary of all pieces, rounds and the size log."
+  ],
+  "critic": "Criteria plus one end-to-end session run by the critic through the harness (type, format, paste, undo, save, reopen) on all targets."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-016"
+ ],
+ "blocked_by": [
+  "X-04"
+ ],
+ "decision_note": ""
+}

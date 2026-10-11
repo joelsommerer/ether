@@ -1,0 +1,67 @@
+{
+ "id": "E1-012",
+ "order": 12,
+ "milestone": "M2",
+ "kind": "behavior",
+ "effort": "M",
+ "ceiling_kb": 27.5,
+ "title": "Clipboard and drag-move",
+ "goal": "Copy/cut write text/plain and clean text/html from the model; paste inserts plain text (multi-line → blocks); clipboard HTML is reduced to text safely; dragging a selection moves it inside the document.",
+ "scope": [
+  "copy/cut: preventDefault, setData from the model; cut = one transaction",
+  "paste: text/plain preferred; text/html → DOMParser (inert document) → text only, never inserted into the live DOM; CRLF normalization; tabs; 1 MB paste",
+  "insertFromDrop/deleteByDrag → one move transaction (one undo step); external file drops blocked without error"
+ ],
+ "out_of_scope": [
+  "Rich HTML import",
+  "Image paste (Phase 5)"
+ ],
+ "rules": [
+  {
+   "rule": "Clipboard HTML never reaches the live document.",
+   "source": "PHASE-1.md D16"
+  },
+  {
+   "rule": "Pasted <script>/onerror payloads yield only their text.",
+   "source": "PHASE-1.md D16"
+  }
+ ],
+ "bar": {
+  "primary": "B1 native (plain-text result)",
+  "secondary": [
+   "B2 ProseMirror (block splitting on multi-line paste)"
+  ],
+  "floor": [],
+  "screens": [],
+  "metrics": [
+   "1 MB paste ≤ 500 ms desktop"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G8",
+   "G11",
+   "G12"
+  ],
+  "criteria": [
+   "Copy from ours → paste into the native oracle and into ProseMirror gives the same text/structure on the desktop targets.",
+   "Paste corpus (multi-line, CRLF, tabs, emoji, 1 MB, HTML with script/img onerror/style) yields the expected model with 0 network requests, 0 script execution and 0 CSP violations.",
+   "Drag-move scenarios (desktop): one ledger transaction; undo restores.",
+   "Mobile: paste via the simulator/emulator clipboard equals the expected model.",
+   "1 MB paste completes in ≤ 500 ms on desktop."
+  ],
+  "critic": "Differential plus criteria."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-011"
+ ],
+ "blocked_by": [],
+ "decision_note": ""
+}

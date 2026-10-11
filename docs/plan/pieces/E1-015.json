@@ -1,0 +1,67 @@
+{
+ "id": "E1-015",
+ "order": 15,
+ "milestone": "M3",
+ "kind": "model",
+ "effort": "M",
+ "ceiling_kb": 32,
+ "title": "Ledger compression",
+ "goal": "The ledger is stored as deflate-raw + Base64 via the native CompressionStream and verifies exactly like JSONL.",
+ "scope": [
+  "Header enc \"deflate-raw+b64\"; async boot without flashing empty content",
+  "Save compresses; old enc \"jsonl\" files keep opening",
+  "Hashes over canonical events, independent of encoding",
+  "Fallback to jsonl if CompressionStream is missing"
+ ],
+ "out_of_scope": [
+  "Custom binary format"
+ ],
+ "rules": [
+  {
+   "rule": "The hash chain is independent of the encoding.",
+   "source": "PHASE-1.md D6"
+  },
+  {
+   "rule": "Backward compatible with E1-005 files.",
+   "source": "PHASE-1.md §4"
+  }
+ ],
+ "bar": {
+  "primary": "Metric",
+  "secondary": [],
+  "floor": [],
+  "screens": [],
+  "metrics": [
+   "10k-word doc ≤ 150 KB on disk",
+   "compression ratio recorded"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G5",
+   "G6",
+   "G7",
+   "G8",
+   "G10",
+   "G11",
+   "G12"
+  ],
+  "criteria": [
+   "jsonl ↔ deflate round trip gives bit-identical canonical events and an equal hash on all targets.",
+   "Old jsonl fixtures open on all targets.",
+   "10k-word doc ≤ 150 KB; load ≤ 400 ms desktop, ≤ 1.5 s mobile.",
+   "Corrupted Base64 shows the integrity banner without an exception."
+  ],
+  "critic": "Criteria-based."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-013"
+ ],
+ "blocked_by": [],
+ "decision_note": ""
+}

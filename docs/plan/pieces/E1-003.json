@@ -1,0 +1,88 @@
+{
+ "id": "E1-003",
+ "order": 3,
+ "milestone": "M0",
+ "kind": "model",
+ "effort": "L",
+ "ceiling_kb": 9,
+ "title": "Format SPEC v0 + reference model (pure, Node)",
+ "goal": "A pure, deterministic, DOM-free core that defines state, primitive ops, the ledger event format, canonical JSON, SHA-256 and the reducer, plus a SPEC.md complete enough for an independent implementation.",
+ "scope": [
+  "src/sha256.js: synchronous SHA-256 over UTF-8 (TextEncoder)",
+  "src/canon.js: canonical JSON (sorted keys, no whitespace, integers only, \"<\" → \\u003c, U+2028/2029 escaped, lone surrogates rejected)",
+  "src/model.js: state {doc, blocks:[{id,type:p|h1|h2|h3|li,text,marks}], heads, clock}; ops blk, split, join, ins, del, fmt, type; validate(op,state) with error codes; apply(state,op) pure; inverse(op,stateBefore)",
+  "src/ledger.js (core): JSONL with header, expansion of implicit p/c/a, id computation, heads verification, topological replay with deterministic tiebreak (lamport, actor), append(event) → line, serialize",
+  "Ids: actor 6–8 chars base62 per session (crypto.getRandomValues), doc id 128-bit base62, block id <actor>:<n>, block order via after",
+  "docs/SPEC.md v0: grammar, op semantics with examples, canonical JSON, hashing, implicit-field expansion, integrity, versioning (fmt webdoc/0), forward compatibility (unknown op → read-only)",
+  "Property tests (node --test, seeded) and NIST SHA-256 vectors",
+  "Fixture ledgers: empty, EN, DE, stress, 10k words (word-level events), multi-parent DAG"
+ ],
+ "out_of_scope": [
+  "DOM, input, rendering",
+  "Compression (E1-015)",
+  "Merge UI (Phase 6) — but the format must accept multiple parents"
+ ],
+ "rules": [
+  {
+   "rule": "Event sourcing: the current state is the replay of the ledger top to bottom.",
+   "source": "Spec §1"
+  },
+  {
+   "rule": "id = sha256(canonical(expanded event without id)); DAG-capable (≥ 2 parents parse and verify).",
+   "source": "PHASE-1.md D5, §4"
+  },
+  {
+   "rule": "Offsets in UTF-16 code units; an op never splits a surrogate pair.",
+   "source": "PHASE-1.md D15"
+  },
+  {
+   "rule": "No Date.now() or Math.random() in the reducer; time and randomness only at event creation.",
+   "source": "PHASE-1.md I3"
+  },
+  {
+   "rule": "Blank documents have an empty ledger; the genesis with a fresh doc id is created on first edit.",
+   "source": "PHASE-1.md §4"
+  }
+ ],
+ "bar": {
+  "primary": "Metric: property tests, NIST vectors and an independent reader built from SPEC.md alone",
+  "secondary": [
+   "Independent reader: a separate fresh agent without access to src/ implements a reader from SPEC.md in a temp dir; its state hashes for the fixture ledgers must match"
+  ],
+  "floor": [],
+  "screens": [],
+  "metrics": [
+   "SHA-256 ≥ 50 MB/s in Node",
+   "replay of 20k events ≤ 100 ms in Node",
+   "core ≤ 7 KB minified",
+   "JSONL bytes of the 10k-word fixture recorded"
+  ]
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G8",
+   "G12"
+  ],
+  "criteria": [
+   "NIST vectors pass; sha256 equals node:crypto on 10 000 random inputs including non-BMP characters.",
+   "Canonical JSON: for 10 000 random objects canon(parse(canon(x))) === canon(x); output never contains \"</script\" or \"<!--\"; U+2028/2029 escaped.",
+   "10 000 seeded random op sequences: replay deterministic (equal hash twice), applying inverse restores the state hash, serialize → parse identical.",
+   "Tamper test: flipping one character at 200 random positions of a ledger always makes verify() report an integrity error.",
+   "The same ledger stored fully explicit and stored lean yields identical ids.",
+   "A multi-parent fixture parses, verifies and replays in deterministic topological order.",
+   "The validator rejects offset > length, a surrogate-splitting op, an unknown block id and joining the first block; an unknown op sets read-only instead of throwing.",
+   "SPEC.md complete; the independent reader reproduces the state hashes of all 5 fixture ledgers.",
+   "Size of the 10k-word fixture recorded in docs/plan/size-log.md."
+  ],
+  "critic": "Criteria-based. The independent-reader result is mandatory evidence; the gap is the first unproven criterion."
+ },
+ "verify": "local (Node)",
+ "depends": [
+  "E1-001"
+ ],
+ "blocked_by": [],
+ "decision_note": "Phase 1 never creates multiple parents, but parses and verifies them so Phase 6 needs no format break."
+}

@@ -1,0 +1,67 @@
+{
+ "id": "E1-006",
+ "order": 6,
+ "milestone": "M1",
+ "kind": "model",
+ "effort": "M",
+ "ceiling_kb": 12.5,
+ "title": "Ghost DOM generator + exposure modes",
+ "goal": "state → a perfect semantic tree (h1–h3, p, ul>li, strong, em, br) keyed by block id, updated incrementally, with the D3 exposure modes.",
+ "scope": [
+  "ghost(state) via createElement/textContent; consecutive li grouped into one ul; canonical mark nesting (strong outside em), adjacent equal runs merged",
+  "Incremental update by block id + version",
+  "Exposure switch: inert (Fluid edit and read) vs .sr-only exposed with aria-hidden projection (for non-semantic projections, tested with a stub)",
+  ".sr-only CSS (clip-path inset(50%), 1px box, overflow hidden, white-space nowrap)",
+  "document.title from the first h1 (fallback \"Untitled\")"
+ ],
+ "out_of_scope": [
+  "Projection (E1-007)"
+ ],
+ "rules": [
+  {
+   "rule": "D3 exposure modes.",
+   "source": "PHASE-1.md D3"
+  },
+  {
+   "rule": "Ghost DOM only via DOM APIs, never HTML strings.",
+   "source": "PHASE-1.md D16"
+  },
+  {
+   "rule": "Same state → byte-identical ghost markup on all targets.",
+   "source": "PHASE-1.md I2"
+  }
+ ],
+ "bar": {
+  "primary": "Metric + accessibility",
+  "secondary": [],
+  "floor": [],
+  "screens": [],
+  "metrics": []
+ },
+ "acceptance": {
+  "gates": [
+   "G1",
+   "G2",
+   "G3",
+   "G4",
+   "G6",
+   "G8",
+   "G9",
+   "G12"
+  ],
+  "criteria": [
+   "For 1000 random states the ghost outerHTML is identical across all 5 targets and equals stored goldens for the fixture states.",
+   "Editing one block changes only that block’s ghost node (MutationObserver count).",
+   "With the stub projection, the a11y snapshot shows correct heading levels, one list with N items and paragraphs; every text exactly once.",
+   "In Fluid mode the ghost is inert: not in the a11y tree; window.find on a unique word finds exactly 1 match on Chromium, Firefox and WebKit.",
+   "axe-core: 0 serious/critical violations in edit and read mode."
+  ],
+  "critic": "Criteria-based; the gap is the first unproven criterion."
+ },
+ "verify": "local (all 5 targets)",
+ "depends": [
+  "E1-005"
+ ],
+ "blocked_by": [],
+ "decision_note": ""
+}

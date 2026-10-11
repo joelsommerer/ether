@@ -1,0 +1,9 @@
+{
+ "id": "X-04",
+ "milestone": "X",
+ "title": "Manual IME checklist (dead keys, Japanese, Korean, Pinyin, autocorrect, dictation, iOS predictive/swipe, Gboard glide/voice)",
+ "needed_by": [
+  "E1-017"
+ ],
+ "when": "before E1-017"
+}
