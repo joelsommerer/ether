@@ -1,0 +1,7 @@
+{
+  "id": "FIXTURE-PASS",
+  "title": "Piece whose only gate (G8, 32 KB) is green",
+  "ceiling_kb": 32,
+  "verify": "local (Node)",
+  "acceptance": { "gates": ["G8"] }
+}

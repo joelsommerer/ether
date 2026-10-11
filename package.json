@@ -1,0 +1,27 @@
+{
+  "name": "ether",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A single self-contained .html file that is at once the document, the viewer and the editor.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "typecheck": "tsc -p jsconfig.json",
+    "lint": "node tools/lint.mjs",
+    "test": "node --test test/unit/",
+    "test:e2e": "playwright test",
+    "size": "node tools/size.mjs",
+    "serve": "node tools/serve.mjs",
+    "gates": "node tools/gates.mjs",
+    "hooks": "git config core.hooksPath tools/hooks"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "axe-core": "4.14.0",
+    "typescript": "7.0.2"
+  }
+}

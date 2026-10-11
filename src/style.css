@@ -1,0 +1,4 @@
+/* Shell defaults only; the Fluid design arrives with E1-014. */
+:root {
+  color-scheme: light dark;
+}

@@ -1,0 +1,7 @@
+{
+  "id": "FIXTURE-FAIL",
+  "title": "Deliberately failing piece: 1-byte ceiling (G8 red) and an unimplemented gate (G5 not-checked)",
+  "ceiling_kb": 0.0009765625,
+  "verify": "local (Node)",
+  "acceptance": { "gates": ["G5", "G8"] }
+}

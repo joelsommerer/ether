@@ -1,0 +1,49 @@
+#!/usr/bin/env node
+// commit-msg hook: rejects AI attribution trailers (PHASE-1.md D13).
+//
+//   git hook:  tools/hooks/commit-msg <message-file>   (install: npm run hooks)
+//   CI:        node tools/hooks/commit-msg --range <base>..<head>
+//
+// Rejected: any line starting with "Co-Authored-By:" and any line containing
+// "Generated with" (case-insensitive). Lines starting with "#" are ignored,
+// because git strips them from the final message.
+
+import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+
+const FORBIDDEN = [/^\s*co-authored-by:/i, /generated with/i];
+
+/** @param {string} message @returns {string[]} offending lines */
+export function offending(message) {
+  return message.split(/\r?\n/).filter((line) => !line.startsWith('#') && FORBIDDEN.some((re) => re.test(line)));
+}
+
+const args = process.argv.slice(2);
+/** @type {{id: string, message: string}[]} */
+let messages;
+if (args[0] === '--range') {
+  if (!args[1]) { console.error('usage: commit-msg --range <base>..<head>'); process.exit(2); }
+  const log = execFileSync('git', ['log', '--format=%H%n%B%x00', args[1]], { encoding: 'utf8' });
+  messages = log.split('\0').map((s) => s.replace(/^\n/, '')).filter((s) => s.trim()).map((s) => {
+    const nl = s.indexOf('\n');
+    return { id: s.slice(0, nl < 0 ? s.length : nl).slice(0, 12), message: nl < 0 ? '' : s.slice(nl + 1) };
+  });
+} else if (args[0]) {
+  messages = [{ id: 'message', message: readFileSync(args[0], 'utf8') }];
+} else {
+  console.error('usage: commit-msg <message-file> | --range <base>..<head>');
+  process.exit(2);
+}
+
+let bad = 0;
+for (const { id, message } of messages) {
+  for (const line of offending(message)) {
+    console.error(`commit-msg: ${id}: forbidden trailer: ${line.trim()}`);
+    bad++;
+  }
+}
+if (bad) {
+  console.error('commit-msg: remove AI attribution lines ("Co-Authored-By:", "Generated with") and commit again.');
+  process.exit(1);
+}
+if (args[0] === '--range') console.log(`commit-msg: ${messages.length} commit(s) checked, ok`);
