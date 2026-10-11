@@ -123,7 +123,7 @@ A gate a driver cannot execute is **not checked**, never green. Only Joel may re
 | 2 | E1-002 | M0 | Measurement rig: 5 targets, scenario DSL, oracles, fuzz + shrink | infra | 2 | E1-001 |
 | 3 | E1-003 | M0 | Format SPEC v0 + reference model (pure, Node) | model | 9 | E1-001 |
 | 4 | E1-004 | M0 | Fluid design proposal (Joel gate) | design-gate | – | E1-001 |
-| 5 | E1-005 | M1 | Ledger in the document: load, verify, replay, serialize | model | 11 | E1-003 |
+| 5 | E1-005 | M1 | Ledger in the document: load, verify, replay, serialize | model | 11 | E1-003, E1-002 |
 | 6 | E1-006 | M1 | Ghost DOM generator + exposure modes | model | 12.5 | E1-005 |
 | 7 | E1-007 | M1 | Fluid projection, position mapper, mutation guard | behavior | 16 | E1-006, E1-002 |
 | 8 | E1-008 | M1 | Input engine: beforeinput router, inputType matrix, word coalescing | behavior | 20 | E1-007 |

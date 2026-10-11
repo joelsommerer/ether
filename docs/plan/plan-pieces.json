@@ -79,7 +79,8 @@
    "ceiling_kb": 11,
    "ui": false,
    "depends": [
-    "E1-003"
+    "E1-003",
+    "E1-002"
    ],
    "blocked_by": []
   },
