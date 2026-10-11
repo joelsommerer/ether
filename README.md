@@ -72,6 +72,7 @@ CI duration: not yet measured — the first run happens when E1-001 is committed
 
 - Phase 1 plan: [`docs/plan/PHASE-1.md`](docs/plan/PHASE-1.md), pieces in [`docs/plan/pieces/`](docs/plan/pieces/)
 - Format specification: [`docs/SPEC.md`](docs/SPEC.md) — ledger format v0 (`webdoc/0`), ops, canonical JSON, hashing, verification, replay (piece E1-003); decisions in [`docs/adr/0003-ledger-format-v0.md`](docs/adr/0003-ledger-format-v0.md)
+- Fluid design proposal: [`docs/adr/0002-fluid-design.md`](docs/adr/0002-fluid-design.md) (piece E1-004, status proposed until Joel approves it, X-03); prototype in `bench/design/`
 - Architecture decisions: [`docs/adr/`](docs/adr/)
 - Size log: [`docs/plan/size-log.md`](docs/plan/size-log.md)
 
