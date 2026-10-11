@@ -1,0 +1,15 @@
+{"doc":"sFSBW7UN2024HOfmCB7LS6","enc":"jsonl","fmt":"webdoc/0","heads":["653c047e0a4b2bd6d8e1b9333d151d389067ec49ae0b3cb4cfd57d9e7c106efd","acca35ca1a34bdf42063522f9ef23be21986da485b433061cba95abedfd706dd"]}
+{"a":"YiBL0s","t":1760198400,"x":[{"after":null,"b":"YiBL0s:1","op":"blk","type":"h1"}]}
+{"t":1760198401,"x":[{"b":"YiBL0s:1","o":0,"op":"ins","s":"Merge-ready "}]}
+{"t":1760198403,"x":[{"b":"YiBL0s:1","o":12,"op":"ins","s":"ledger"}]}
+{"t":1760198405,"x":[{"b":"YiBL0s:1","nb":"YiBL0s:2","o":18,"op":"split","type":"p"}]}
+{"t":1760198407,"x":[{"b":"YiBL0s:2","o":0,"op":"ins","s":"Paragraph "}]}
+{"x":[{"b":"YiBL0s:2","o":10,"op":"ins","s":"of "}]}
+{"x":[{"b":"YiBL0s:2","o":13,"op":"ins","s":"actor "}]}
+{"t":1760198408,"x":[{"b":"YiBL0s:2","o":19,"op":"ins","s":"A."}]}
+{"a":"TqnoF1","t":1760198413,"x":[{"after":"YiBL0s:1","b":"TqnoF1:1","op":"blk","type":"p"},{"b":"TqnoF1:1","o":0,"op":"ins","s":"Inserted by B "}]}
+{"t":1760198414,"x":[{"b":"TqnoF1:1","o":14,"op":"ins","s":"concurrently."}]}
+{"a":"YiBL0s","c":9,"p":["15cf725dd7d75dfb9d10393600eafd5b6d6727143627f994b44507540ac31fc4"],"t":1760198415,"x":[{"b":"YiBL0s:2","m":"b","n":7,"o":13,"on":true,"op":"fmt"}]}
+{"c":11,"p":["27e51bfa3d25f9a06a5c2b78afbc6f110c4f6e5a6712ba317efbc25db59c4fe0","ee2dbb6180cf825cb00661a2c1c76a98fe675b15f93335dcecdb30366254c0ec"],"t":1760198417,"x":[{"b":"TqnoF1:1","op":"type","type":"h2"}]}
+{"a":"TqnoF1","t":1760198420,"x":[{"b":"YiBL0s:2","o":0,"op":"ins","s":"§ "}]}
+{"a":"YiBL0s","c":12,"p":["eca2fcd1c4f44aba8169e669abc97f0d3422cdf961bb830c156b6a4fbe9b6ffa"],"t":1760198421,"x":[{"b":"YiBL0s:1","o":18,"op":"ins","s":" (v0)"}]}

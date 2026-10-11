@@ -27,9 +27,10 @@ npm run hooks                            # once per clone: use tools/hooks (comm
 | `npm run build` | `tools/build.mjs`: `src/` → `dist/blank.html` (minified) and `dist/blank.dev.html` (unminified twin), each with its own CSP hashes. `--out <dir>` builds elsewhere. Two builds are byte-identical. |
 | `npm run typecheck` | `tsc -p jsconfig.json` (checkJs, strict, noEmit) over `src/` — gate G1. |
 | `npm run lint` | `tools/lint.mjs`: no HTML-string sinks, `eval`, `new Function`, string timers, TODO/FIXME or http(s) URLs in `src/` — gate G2. |
-| `npm run test` | `node --test test/unit/` — gate G3 (minifier, build, lint, size, gates, hook, server). `npm test` is the same. |
+| `npm run test` | `node --test test/unit/` — gate G3 (format core: SHA-256 NIST vectors, canonical JSON, model, ledger property tests, fixtures, SPEC examples, core metrics; tooling: minifier, build, lint, size, gates, hook, server). `npm test` is the same. |
 | `npm run test:e2e` | Playwright on Chromium, Firefox and WebKit against `dist/` (build first). Starts and stops the static server itself. |
 | `npm run size -- --piece <ID>` | `tools/size.mjs`: bytes of `dist/blank.html` against the piece's `ceiling_kb` (1 KB = 1024 B); appends to `docs/plan/size-log.md` — gate G8. |
+| `npm run fixtures` | `tools/fixtures.mjs`: regenerates the conformance ledgers in `test/fixtures/ledgers/` and their `expected.json` (deterministic); `-- --check` fails if the committed files are stale. |
 | `npm run serve` | `tools/serve.mjs`: static server on `http://127.0.0.1:4173` for `/dist/` and `/bench/` (`--port`, `--host`). |
 | `npm run gates -- --piece <ID> [--targets all\|desktop\|mobile\|<list>] [--gates G1,..]` | `tools/gates.mjs`: builds, runs the piece's gates and prints the G1–G12 table (green / red / not-checked / n.a.); exit code ≠ 0 when a relevant gate is red or not-checked. Report in `test-results/gates/<ID>.json`. |
 | `npm run hooks` | Sets `core.hooksPath` to `tools/hooks`; `commit-msg` rejects `Co-Authored-By:` and `Generated with` lines. |
@@ -40,10 +41,12 @@ Targets: `chromium`, `firefox`, `webkit` (desktop, Playwright) and `ios-safari`,
 
 ```
 src/            engine modules (JSDoc), style.css, template.html
+                format core (E1-003): sha256.js, canon.js, model.js, ledger.js
 tools/          build, minify, lint, size, gates, serve (+ hooks/commit-msg)
 test/unit/      node --test
 test/e2e/       Playwright (desktop targets)
-test/fixtures/  inputs for the tool tests
+test/fixtures/  inputs for the tool tests; ledgers/: format v0 conformance ledgers
+test/helpers/   shared generators for the property tests
 bench/          oracles, fixtures and stubs for the measurement rig (E1-002)
 docs/           SPEC.md, adr/, plan/
 dist/           build output (gitignored; release artifacts are attached to tags)
@@ -68,7 +71,7 @@ CI duration: not yet measured — the first run happens when E1-001 is committed
 ## Documentation
 
 - Phase 1 plan: [`docs/plan/PHASE-1.md`](docs/plan/PHASE-1.md), pieces in [`docs/plan/pieces/`](docs/plan/pieces/)
-- Format specification: [`docs/SPEC.md`](docs/SPEC.md) (stub; written in piece E1-003)
+- Format specification: [`docs/SPEC.md`](docs/SPEC.md) — ledger format v0 (`webdoc/0`), ops, canonical JSON, hashing, verification, replay (piece E1-003); decisions in [`docs/adr/0003-ledger-format-v0.md`](docs/adr/0003-ledger-format-v0.md)
 - Architecture decisions: [`docs/adr/`](docs/adr/)
 - Size log: [`docs/plan/size-log.md`](docs/plan/size-log.md)
 

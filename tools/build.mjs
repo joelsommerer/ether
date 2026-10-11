@@ -23,7 +23,7 @@ const SRC = join(ROOT, 'src');
  * Module order is fixed: a module may only import from modules listed before it.
  * New engine modules are added here.
  */
-export const MODULES = ['version.js', 'main.js'];
+export const MODULES = ['version.js', 'sha256.js', 'canon.js', 'model.js', 'ledger.js', 'main.js'];
 
 const IMPORT_LINE = /^import\s*\{([^}]*)\}\s*from\s*'\.\/([\w-]+\.js)';?[ \t]*$/;
 const EXPORT_DECL = /^export\s+(?=(?:async\s+)?function\b|const\b|let\b|class\b)/;

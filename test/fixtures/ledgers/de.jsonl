@@ -1,0 +1,131 @@
+{"doc":"pLduOHEJNKhWhIgFx64pu1","enc":"jsonl","fmt":"webdoc/0","heads":["547b29e1c27287dd825617f83d77cb1a82148ffbabd049cd51a06e4e6badd660"]}
+{"a":"zXPwTJ","t":1760198400,"x":[{"after":null,"b":"zXPwTJ:1","op":"blk","type":"h1"}]}
+{"t":1760198401,"x":[{"b":"zXPwTJ:1","o":0,"op":"ins","s":"Die "}]}
+{"x":[{"b":"zXPwTJ:1","o":4,"op":"ins","s":"Verwandlung"}]}
+{"x":[{"b":"zXPwTJ:1","nb":"zXPwTJ:2","o":15,"op":"split","type":"h2"}]}
+{"x":[{"b":"zXPwTJ:2","o":0,"op":"ins","s":"I"}]}
+{"t":1760198402,"x":[{"b":"zXPwTJ:2","nb":"zXPwTJ:3","o":1,"op":"split","type":"p"}]}
+{"t":1760198404,"x":[{"b":"zXPwTJ:3","o":0,"op":"ins","s":"Als "}]}
+{"t":1760198405,"x":[{"b":"zXPwTJ:3","o":4,"op":"ins","s":"Gregor "}]}
+{"t":1760198407,"x":[{"b":"zXPwTJ:3","o":11,"op":"ins","s":"Samsa "}]}
+{"t":1760198409,"x":[{"b":"zXPwTJ:3","o":17,"op":"ins","s":"eines "}]}
+{"x":[{"b":"zXPwTJ:3","o":23,"op":"ins","s":"Morgens "}]}
+{"x":[{"b":"zXPwTJ:3","o":31,"op":"ins","s":"aus "}]}
+{"x":[{"b":"zXPwTJ:3","o":35,"op":"ins","s":"unruhigen "}]}
+{"x":[{"b":"zXPwTJ:3","o":45,"op":"ins","s":"Träumen "}]}
+{"t":1760198410,"x":[{"b":"zXPwTJ:3","o":53,"op":"ins","s":"erwachte, "}]}
+{"x":[{"b":"zXPwTJ:3","o":63,"op":"ins","s":"fand "}]}
+{"t":1760198411,"x":[{"b":"zXPwTJ:3","o":68,"op":"ins","s":"er "}]}
+{"x":[{"b":"zXPwTJ:3","o":71,"op":"ins","s":"sich "}]}
+{"t":1760198412,"x":[{"b":"zXPwTJ:3","o":76,"op":"ins","s":"in "}]}
+{"t":1760198414,"x":[{"b":"zXPwTJ:3","o":79,"op":"ins","s":"seinem "}]}
+{"t":1760198415,"x":[{"b":"zXPwTJ:3","o":86,"op":"ins","s":"Bett "}]}
+{"t":1760198417,"x":[{"b":"zXPwTJ:3","o":91,"op":"ins","s":"zu "}]}
+{"x":[{"b":"zXPwTJ:3","o":94,"op":"ins","s":"einem "}]}
+{"t":1760198418,"x":[{"b":"zXPwTJ:3","o":100,"op":"ins","s":"ungeheueren "}]}
+{"t":1760198419,"x":[{"b":"zXPwTJ:3","o":112,"op":"ins","s":"Ungeziefer "}]}
+{"x":[{"b":"zXPwTJ:3","o":123,"op":"ins","s":"verwandelt. "}]}
+{"x":[{"b":"zXPwTJ:3","o":135,"op":"ins","s":"Er "}]}
+{"t":1760198420,"x":[{"b":"zXPwTJ:3","o":138,"op":"ins","s":"lag "}]}
+{"t":1760198421,"x":[{"b":"zXPwTJ:3","o":142,"op":"ins","s":"auf "}]}
+{"x":[{"b":"zXPwTJ:3","o":146,"op":"ins","s":"seinem "}]}
+{"x":[{"b":"zXPwTJ:3","o":153,"op":"ins","s":"panzerartig "}]}
+{"t":1760198423,"x":[{"b":"zXPwTJ:3","o":165,"op":"ins","s":"harten "}]}
+{"x":[{"b":"zXPwTJ:3","o":172,"op":"ins","s":"Rücken "}]}
+{"x":[{"b":"zXPwTJ:3","o":179,"op":"ins","s":"und "}]}
+{"x":[{"b":"zXPwTJ:3","o":183,"op":"ins","s":"sah, "}]}
+{"x":[{"b":"zXPwTJ:3","o":188,"op":"ins","s":"wenn "}]}
+{"x":[{"b":"zXPwTJ:3","o":193,"op":"ins","s":"er "}]}
+{"x":[{"b":"zXPwTJ:3","o":196,"op":"ins","s":"den "}]}
+{"x":[{"b":"zXPwTJ:3","o":200,"op":"ins","s":"Kopf "}]}
+{"t":1760198424,"x":[{"b":"zXPwTJ:3","o":205,"op":"ins","s":"ein "}]}
+{"x":[{"b":"zXPwTJ:3","o":209,"op":"ins","s":"wenig "}]}
+{"x":[{"b":"zXPwTJ:3","o":215,"op":"ins","s":"hob, "}]}
+{"t":1760198425,"x":[{"b":"zXPwTJ:3","o":220,"op":"ins","s":"seinen "}]}
+{"x":[{"b":"zXPwTJ:3","o":227,"op":"ins","s":"gewölbten, "}]}
+{"t":1760198427,"x":[{"b":"zXPwTJ:3","o":238,"op":"ins","s":"braunen, "}]}
+{"t":1760198428,"x":[{"b":"zXPwTJ:3","o":247,"op":"ins","s":"von "}]}
+{"x":[{"b":"zXPwTJ:3","o":251,"op":"ins","s":"bogenförmigen "}]}
+{"x":[{"b":"zXPwTJ:3","o":265,"op":"ins","s":"Versteifungen "}]}
+{"t":1760198429,"x":[{"b":"zXPwTJ:3","o":279,"op":"ins","s":"geteilten "}]}
+{"x":[{"b":"zXPwTJ:3","o":289,"op":"ins","s":"Bauch, "}]}
+{"t":1760198431,"x":[{"b":"zXPwTJ:3","o":296,"op":"ins","s":"auf "}]}
+{"x":[{"b":"zXPwTJ:3","o":300,"op":"ins","s":"dessen "}]}
+{"t":1760198432,"x":[{"b":"zXPwTJ:3","o":307,"op":"ins","s":"Höhe "}]}
+{"t":1760198434,"x":[{"b":"zXPwTJ:3","o":312,"op":"ins","s":"sich "}]}
+{"t":1760198435,"x":[{"b":"zXPwTJ:3","o":317,"op":"ins","s":"die "}]}
+{"t":1760198437,"x":[{"b":"zXPwTJ:3","o":321,"op":"ins","s":"Bettdecke, "}]}
+{"t":1760198438,"x":[{"b":"zXPwTJ:3","o":332,"op":"ins","s":"zum "}]}
+{"x":[{"b":"zXPwTJ:3","o":336,"op":"ins","s":"gänzlichen "}]}
+{"x":[{"b":"zXPwTJ:3","o":347,"op":"ins","s":"Niedergleiten "}]}
+{"t":1760198439,"x":[{"b":"zXPwTJ:3","o":361,"op":"ins","s":"bereit, "}]}
+{"t":1760198441,"x":[{"b":"zXPwTJ:3","o":369,"op":"ins","s":"kaum "}]}
+{"t":1760198442,"x":[{"b":"zXPwTJ:3","o":374,"op":"ins","s":"noch "}]}
+{"t":1760198443,"x":[{"b":"zXPwTJ:3","o":379,"op":"ins","s":"erhalten "}]}
+{"t":1760198445,"x":[{"b":"zXPwTJ:3","o":388,"op":"ins","s":"konnte. "}]}
+{"x":[{"b":"zXPwTJ:3","o":396,"op":"ins","s":"Seine "}]}
+{"t":1760198446,"x":[{"b":"zXPwTJ:3","o":402,"op":"ins","s":"vielen, "}]}
+{"t":1760198448,"x":[{"b":"zXPwTJ:3","o":410,"op":"ins","s":"im "}]}
+{"x":[{"b":"zXPwTJ:3","o":413,"op":"ins","s":"Vergleich "}]}
+{"x":[{"b":"zXPwTJ:3","o":423,"op":"ins","s":"zu "}]}
+{"t":1760198449,"x":[{"b":"zXPwTJ:3","o":426,"op":"ins","s":"seinem "}]}
+{"t":1760198451,"x":[{"b":"zXPwTJ:3","o":433,"op":"ins","s":"sonstigen "}]}
+{"t":1760198452,"x":[{"b":"zXPwTJ:3","o":443,"op":"ins","s":"Umfang "}]}
+{"t":1760198454,"x":[{"b":"zXPwTJ:3","o":450,"op":"ins","s":"kläglich "}]}
+{"t":1760198455,"x":[{"b":"zXPwTJ:3","o":459,"op":"ins","s":"dünnen "}]}
+{"x":[{"b":"zXPwTJ:3","o":466,"op":"ins","s":"Beine "}]}
+{"x":[{"b":"zXPwTJ:3","o":472,"op":"ins","s":"flimmerten "}]}
+{"t":1760198456,"x":[{"b":"zXPwTJ:3","o":483,"op":"ins","s":"ihm "}]}
+{"t":1760198457,"x":[{"b":"zXPwTJ:3","o":487,"op":"ins","s":"hilflos "}]}
+{"t":1760198458,"x":[{"b":"zXPwTJ:3","o":495,"op":"ins","s":"vor "}]}
+{"t":1760198459,"x":[{"b":"zXPwTJ:3","o":499,"op":"ins","s":"den "}]}
+{"x":[{"b":"zXPwTJ:3","o":503,"op":"ins","s":"Augen."}]}
+{"x":[{"b":"zXPwTJ:3","m":"i","n":10,"o":112,"on":true,"op":"fmt"}]}
+{"t":1760198461,"x":[{"b":"zXPwTJ:3","nb":"zXPwTJ:4","o":509,"op":"split","type":"p"}]}
+{"x":[{"b":"zXPwTJ:4","o":0,"op":"ins","s":"»Was "}]}
+{"t":1760198462,"x":[{"b":"zXPwTJ:4","o":5,"op":"ins","s":"ist "}]}
+{"x":[{"b":"zXPwTJ:4","o":9,"op":"ins","s":"mit "}]}
+{"t":1760198464,"x":[{"b":"zXPwTJ:4","o":13,"op":"ins","s":"mir "}]}
+{"t":1760198465,"x":[{"b":"zXPwTJ:4","o":17,"op":"ins","s":"geschehen?« "}]}
+{"t":1760198466,"x":[{"b":"zXPwTJ:4","o":29,"op":"ins","s":"dachte "}]}
+{"t":1760198468,"x":[{"b":"zXPwTJ:4","o":36,"op":"ins","s":"er. "}]}
+{"x":[{"b":"zXPwTJ:4","o":40,"op":"ins","s":"Es "}]}
+{"t":1760198470,"x":[{"b":"zXPwTJ:4","o":43,"op":"ins","s":"war "}]}
+{"t":1760198471,"x":[{"b":"zXPwTJ:4","o":47,"op":"ins","s":"kein "}]}
+{"t":1760198472,"x":[{"b":"zXPwTJ:4","o":52,"op":"ins","s":"Traum. "}]}
+{"x":[{"b":"zXPwTJ:4","o":59,"op":"ins","s":"Sein "}]}
+{"t":1760198474,"x":[{"b":"zXPwTJ:4","o":64,"op":"ins","s":"Zimmer, "}]}
+{"t":1760198475,"x":[{"b":"zXPwTJ:4","o":72,"op":"ins","s":"ein "}]}
+{"t":1760198477,"x":[{"b":"zXPwTJ:4","o":76,"op":"ins","s":"richtiges, "}]}
+{"t":1760198478,"x":[{"b":"zXPwTJ:4","o":87,"op":"ins","s":"nur "}]}
+{"t":1760198479,"x":[{"b":"zXPwTJ:4","o":91,"op":"ins","s":"etwas "}]}
+{"t":1760198480,"x":[{"b":"zXPwTJ:4","o":97,"op":"ins","s":"zu "}]}
+{"x":[{"b":"zXPwTJ:4","o":100,"op":"ins","s":"kleines "}]}
+{"t":1760198481,"x":[{"b":"zXPwTJ:4","o":108,"op":"ins","s":"Menschenzimmer, "}]}
+{"x":[{"b":"zXPwTJ:4","o":124,"op":"ins","s":"lag "}]}
+{"t":1760198482,"x":[{"b":"zXPwTJ:4","o":128,"op":"ins","s":"ruhig "}]}
+{"x":[{"b":"zXPwTJ:4","o":134,"op":"ins","s":"zwischen "}]}
+{"t":1760198483,"x":[{"b":"zXPwTJ:4","o":143,"op":"ins","s":"den "}]}
+{"t":1760198484,"x":[{"b":"zXPwTJ:4","o":147,"op":"ins","s":"vier "}]}
+{"t":1760198486,"x":[{"b":"zXPwTJ:4","o":152,"op":"ins","s":"wohlbekannten "}]}
+{"t":1760198487,"x":[{"b":"zXPwTJ:4","o":166,"op":"ins","s":"Wänden."}]}
+{"t":1760198488,"x":[{"b":"zXPwTJ:4","m":"b","n":18,"o":40,"on":true,"op":"fmt"}]}
+{"x":[{"b":"zXPwTJ:4","m":"i","n":5,"o":52,"on":true,"op":"fmt"}]}
+{"x":[{"b":"zXPwTJ:4","m":"b","n":7,"o":40,"on":false,"op":"fmt"}]}
+{"t":1760198489,"x":[{"b":"zXPwTJ:4","nb":"zXPwTJ:5","o":59,"op":"split","type":"p"}]}
+{"x":[{"b":"zXPwTJ:4","n":1,"o":58,"op":"del"},{"b":"zXPwTJ:5","op":"join"},{"b":"zXPwTJ:4","o":58,"op":"ins","s":" "}]}
+{"t":1760198490,"x":[{"b":"zXPwTJ:4","nb":"zXPwTJ:6","o":173,"op":"split","type":"p"}]}
+{"t":1760198491,"x":[{"b":"zXPwTJ:6","o":0,"op":"ins","s":"Über "}]}
+{"t":1760198493,"x":[{"b":"zXPwTJ:6","o":5,"op":"ins","s":"der "}]}
+{"t":1760198494,"x":[{"b":"zXPwTJ:6","o":9,"op":"ins","s":"Kommode "}]}
+{"t":1760198496,"x":[{"b":"zXPwTJ:6","o":17,"op":"ins","s":"hing "}]}
+{"t":1760198497,"x":[{"b":"zXPwTJ:6","o":22,"op":"ins","s":"ein "}]}
+{"t":1760198499,"x":[{"b":"zXPwTJ:6","o":26,"op":"ins","s":"Bild, "}]}
+{"t":1760198500,"x":[{"b":"zXPwTJ:6","o":32,"op":"ins","s":"Grüße "}]}
+{"t":1760198502,"x":[{"b":"zXPwTJ:6","o":38,"op":"ins","s":"aus "}]}
+{"x":[{"b":"zXPwTJ:6","o":42,"op":"ins","s":"der "}]}
+{"x":[{"b":"zXPwTJ:6","o":46,"op":"ins","s":"Straße, "}]}
+{"t":1760198503,"x":[{"b":"zXPwTJ:6","o":54,"op":"ins","s":"äußerst "}]}
+{"t":1760198504,"x":[{"b":"zXPwTJ:6","o":62,"op":"ins","s":"schön "}]}
+{"t":1760198506,"x":[{"b":"zXPwTJ:6","o":68,"op":"ins","s":"gerahmt."}]}
+{"t":1760198508,"x":[{"b":"zXPwTJ:6","op":"type","type":"li"}]}

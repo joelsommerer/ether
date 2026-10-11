@@ -1,0 +1,61 @@
+{
+  "empty": {
+    "bytes": 0,
+    "events": 0,
+    "blocks": 0,
+    "words": 0,
+    "heads": [],
+    "state": "4dbe56456145f9ed824ba19c45c6b9c07c86ccd966d0ba6a118170c376dc96dc"
+  },
+  "en": {
+    "bytes": 11838,
+    "events": 170,
+    "blocks": 13,
+    "words": 151,
+    "heads": [
+      "486f32a3d14c8ce97413f2b93083a525f2e0e4cfc139c0bc2dbb67dfd36f04d1"
+    ],
+    "state": "41bf929d916359fb4fccdcc790d893231bdb195d3933cebbfef325498a4685c9"
+  },
+  "de": {
+    "bytes": 8982,
+    "events": 130,
+    "blocks": 5,
+    "words": 118,
+    "heads": [
+      "547b29e1c27287dd825617f83d77cb1a82148ffbabd049cd51a06e4e6badd660"
+    ],
+    "state": "2dad8c0aff5321dbc1752848464950ca31ee28e4a917ac915c0b27469ca33161"
+  },
+  "stress": {
+    "bytes": 3191,
+    "events": 41,
+    "blocks": 6,
+    "words": 36,
+    "heads": [
+      "0a5d012db0617acb6f77e7dce151605f5ad600e57dce7ac67bced6fb818c6666"
+    ],
+    "state": "1485d2b85466c06427ea969fe2eeb18b1cff5d6197829e4832fb55b8d3d14a8b"
+  },
+  "10k": {
+    "bytes": 716269,
+    "events": 10603,
+    "blocks": 156,
+    "words": 10000,
+    "heads": [
+      "0a16637f461ff8912f0557ef03d5b8d14e4819c6fa103787148c8b78fd3004f8"
+    ],
+    "state": "bafae9ace3361915c17f4aa981b3e49d206649761f76c68dd48edafbb541732e"
+  },
+  "dag": {
+    "bytes": 1636,
+    "events": 14,
+    "blocks": 3,
+    "words": 12,
+    "heads": [
+      "653c047e0a4b2bd6d8e1b9333d151d389067ec49ae0b3cb4cfd57d9e7c106efd",
+      "acca35ca1a34bdf42063522f9ef23be21986da485b433061cba95abedfd706dd"
+    ],
+    "state": "f979df3def6f610abeb74cb62010e0d89cbe392d2196ba26ad36fc872ef74d8b"
+  }
+}
