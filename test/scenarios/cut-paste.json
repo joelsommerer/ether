@@ -1,0 +1,46 @@
+{
+ "id": "cut-paste",
+ "title": "Mod+X cuts a selection, Mod+V pastes it at the end",
+ "tags": [
+  "plain",
+  "paste"
+ ],
+ "covers": [
+  "deleteByCut",
+  "insertFromPaste"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     0
+    ],
+    "focus": [
+     0,
+     6
+    ]
+   }
+  },
+  {
+   "shortcut": "Mod+X"
+  },
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "shortcut": "Mod+V"
+  }
+ ]
+}

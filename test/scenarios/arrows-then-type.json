@@ -1,0 +1,36 @@
+{
+ "id": "arrows-then-type",
+ "title": "Arrow keys move the caret, then typing",
+ "tags": [
+  "plain",
+  "navigation"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "ArrowLeft"
+  },
+  {
+   "key": "ArrowLeft"
+  },
+  {
+   "text": "X"
+  }
+ ]
+}

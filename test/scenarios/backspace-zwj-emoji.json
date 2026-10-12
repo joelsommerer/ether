@@ -1,0 +1,29 @@
+{
+ "id": "backspace-zwj-emoji",
+ "title": "Backspace after a ZWJ emoji",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "a👩‍👩‍👧b"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     9
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

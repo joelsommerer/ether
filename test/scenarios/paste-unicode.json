@@ -1,0 +1,24 @@
+{
+ "id": "paste-unicode",
+ "title": "Pasting emoji, CJK and umlauts",
+ "tags": [
+  "plain",
+  "paste"
+ ],
+ "covers": [
+  "insertFromPaste"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "paste": {
+    "text": "Grüsse 👩‍👩‍👧 漢字"
+   }
+  }
+ ]
+}

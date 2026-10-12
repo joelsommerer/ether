@@ -1,0 +1,30 @@
+{
+ "id": "tap-then-type",
+ "title": "Tap at a character position, then typing",
+ "tags": [
+  "plain",
+  "pointer"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "tap": {
+    "at": [
+     0,
+     6
+    ]
+   }
+  },
+  {
+   "text": "X"
+  }
+ ]
+}

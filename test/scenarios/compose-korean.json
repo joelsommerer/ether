@@ -1,0 +1,35 @@
+{
+ "id": "compose-korean",
+ "title": "Korean syllable composition",
+ "tags": [
+  "plain",
+  "composition"
+ ],
+ "covers": [
+  "insertCompositionText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "compose": [
+    "ㅎ",
+    "하",
+    "한"
+   ],
+   "commit": "한"
+  },
+  {
+   "compose": [
+    "ㄱ",
+    "그",
+    "글"
+   ],
+   "commit": "글"
+  }
+ ]
+}

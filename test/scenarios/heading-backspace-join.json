@@ -1,0 +1,33 @@
+{
+ "id": "heading-backspace-join",
+ "title": "Backspace joins a paragraph into a heading",
+ "tags": [
+  "structural"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "h1",
+   "s": "Title"
+  },
+  {
+   "t": "p",
+   "s": "Body"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     1,
+     0
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

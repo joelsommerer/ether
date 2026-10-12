@@ -1,0 +1,30 @@
+{
+ "id": "unordered-list-shortcut",
+ "title": "Shift+Control+8 (ProseMirror example: bullet list)",
+ "tags": [
+  "structural"
+ ],
+ "covers": [
+  "insertUnorderedList"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "item"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     2
+    ]
+   }
+  },
+  {
+   "shortcut": "Shift+Control+8"
+  }
+ ],
+ "note": "Native contenteditable has no list shortcut; the coverage table records whether insertUnorderedList was emitted."
+}

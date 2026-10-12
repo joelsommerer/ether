@@ -17,6 +17,8 @@
     "size": "node tools/size.mjs",
     "fixtures": "node tools/fixtures.mjs",
     "serve": "node tools/serve.mjs",
+    "rig": "node tools/rig.mjs",
+    "devices": "node tools/devices.mjs",
     "gates": "node tools/gates.mjs",
     "hooks": "git config core.hooksPath tools/hooks"
   },

@@ -1,0 +1,33 @@
+{
+ "id": "compose-cancel",
+ "title": "Composition cancelled with an empty commit",
+ "tags": [
+  "plain",
+  "composition"
+ ],
+ "covers": [
+  "insertCompositionText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "ab"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "compose": [
+    "か"
+   ],
+   "commit": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "id": "compose-dead-key",
+ "title": "Dead key composition: ¨ + u = ü",
+ "tags": [
+  "plain",
+  "composition"
+ ],
+ "covers": [
+  "insertCompositionText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Grsse"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     2
+    ]
+   }
+  },
+  {
+   "compose": [
+    "¨"
+   ],
+   "commit": "ü"
+  }
+ ]
+}

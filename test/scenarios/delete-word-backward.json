@@ -1,0 +1,32 @@
+{
+ "id": "delete-word-backward",
+ "title": "Alt+Backspace deletes the previous word",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteWordBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     13
+    ]
+   }
+  },
+  {
+   "key": "Backspace",
+   "mods": [
+    "Alt"
+   ]
+  }
+ ]
+}

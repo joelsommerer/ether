@@ -1,0 +1,33 @@
+{
+ "id": "list-backspace-second",
+ "title": "Backspace at the start of the second list item",
+ "tags": [
+  "structural"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "li",
+   "s": "one"
+  },
+  {
+   "t": "li",
+   "s": "two"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     1,
+     0
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

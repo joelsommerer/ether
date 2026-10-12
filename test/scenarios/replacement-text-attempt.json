@@ -1,0 +1,22 @@
+{
+ "id": "replacement-text-attempt",
+ "title": "Misspelling that a spell checker or autocorrect may replace (insertReplacementText)",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "insertReplacementText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "text": "Teh quick borwn fox "
+  }
+ ],
+ "note": "No keyboard path emits insertReplacementText; the coverage table records whether the target emitted it."
+}

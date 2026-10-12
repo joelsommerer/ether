@@ -1,0 +1,28 @@
+{
+ "id": "compose-japanese",
+ "title": "Japanese kana to kanji",
+ "tags": [
+  "plain",
+  "composition"
+ ],
+ "covers": [
+  "insertCompositionText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "compose": [
+    "k",
+    "か",
+    "かn",
+    "かな"
+   ],
+   "commit": "仮名"
+  }
+ ]
+}

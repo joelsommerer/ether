@@ -1,0 +1,32 @@
+{
+ "id": "delete-soft-line-forward",
+ "title": "Mod+Delete deletes to the end of the line",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteSoftLineForward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     18
+    ]
+   }
+  },
+  {
+   "key": "Delete",
+   "mods": [
+    "Mod"
+   ]
+  }
+ ]
+}

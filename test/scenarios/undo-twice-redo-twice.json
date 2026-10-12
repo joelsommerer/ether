@@ -1,0 +1,49 @@
+{
+ "id": "undo-twice-redo-twice",
+ "title": "Undo twice, redo twice",
+ "tags": [
+  "plain",
+  "history"
+ ],
+ "covers": [
+  "historyUndo",
+  "historyRedo"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "text": "one"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "select": {
+    "anchor": [
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "text": "two "
+  },
+  {
+   "undo": true
+  },
+  {
+   "undo": true
+  },
+  {
+   "redo": true
+  },
+  {
+   "redo": true
+  }
+ ]
+}

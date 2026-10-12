@@ -1,0 +1,29 @@
+{
+ "id": "backspace-flag",
+ "title": "Backspace after a flag",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "x🇨🇭y"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

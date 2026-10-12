@@ -1,0 +1,33 @@
+{
+ "id": "italic-selection",
+ "title": "Mod+I on a selection",
+ "tags": [
+  "marks"
+ ],
+ "covers": [
+  "formatItalic"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     6
+    ],
+    "focus": [
+     0,
+     11
+    ]
+   }
+  },
+  {
+   "shortcut": "Mod+I"
+  }
+ ]
+}

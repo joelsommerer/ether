@@ -1,0 +1,34 @@
+{
+ "id": "delete-selection-forward",
+ "title": "Delete removes a selection",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContent",
+  "deleteContentForward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ],
+    "focus": [
+     0,
+     14
+    ]
+   }
+  },
+  {
+   "key": "Delete"
+  }
+ ]
+}

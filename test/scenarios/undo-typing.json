@@ -1,0 +1,34 @@
+{
+ "id": "undo-typing",
+ "title": "Mod+Z after typing",
+ "tags": [
+  "plain",
+  "history"
+ ],
+ "covers": [
+  "insertText",
+  "historyUndo"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello "
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     6
+    ]
+   }
+  },
+  {
+   "text": "abc"
+  },
+  {
+   "undo": true
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "id": "transpose",
+ "title": "Control+T transposes the characters around the caret (macOS)",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "insertTranspose"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hlelo"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     2
+    ]
+   }
+  },
+  {
+   "key": "t",
+   "mods": [
+    "Control"
+   ]
+  }
+ ]
+}

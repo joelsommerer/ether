@@ -1,0 +1,29 @@
+{
+ "id": "type-middle",
+ "title": "Inserting a word in the middle of a fixture sentence",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "text": "all "
+  }
+ ]
+}

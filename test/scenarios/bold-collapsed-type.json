@@ -1,0 +1,33 @@
+{
+ "id": "bold-collapsed-type",
+ "title": "Mod+B at a collapsed caret, then typing",
+ "tags": [
+  "marks"
+ ],
+ "covers": [
+  "formatBold",
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "shortcut": "Mod+B"
+  },
+  {
+   "text": "z"
+  }
+ ]
+}

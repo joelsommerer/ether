@@ -1,0 +1,36 @@
+{
+ "id": "word-jump",
+ "title": "Alt+ArrowLeft jumps a word, then typing",
+ "tags": [
+  "plain",
+  "navigation"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     20
+    ]
+   }
+  },
+  {
+   "key": "ArrowLeft",
+   "mods": [
+    "Alt"
+   ]
+  },
+  {
+   "text": "all "
+  }
+ ]
+}

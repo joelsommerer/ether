@@ -1,0 +1,32 @@
+{
+ "id": "paste-plain",
+ "title": "Pasting plain text",
+ "tags": [
+  "plain",
+  "paste"
+ ],
+ "covers": [
+  "insertFromPaste"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello "
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     6
+    ]
+   }
+  },
+  {
+   "paste": {
+    "text": "pasted"
+   }
+  }
+ ]
+}

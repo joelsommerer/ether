@@ -1,0 +1,21 @@
+{
+ "id": "markdown-list",
+ "title": "Typing \"- \" at a block start (input rule)",
+ "tags": [
+  "structural"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "text": "- item"
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "id": "select-all-type",
+ "title": "Select all, then typing",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  },
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "shortcut": "Mod+A"
+  },
+  {
+   "text": "new"
+  }
+ ]
+}

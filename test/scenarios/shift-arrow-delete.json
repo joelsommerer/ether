@@ -1,0 +1,48 @@
+{
+ "id": "shift-arrow-delete",
+ "title": "Shift+Arrow extends the selection, Backspace removes it",
+ "tags": [
+  "plain",
+  "navigation"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     11
+    ]
+   }
+  },
+  {
+   "key": "ArrowLeft",
+   "mods": [
+    "Shift"
+   ]
+  },
+  {
+   "key": "ArrowLeft",
+   "mods": [
+    "Shift"
+   ]
+  },
+  {
+   "key": "ArrowLeft",
+   "mods": [
+    "Shift"
+   ]
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "id": "shift-enter-middle",
+ "title": "Shift+Enter inserts a line break",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "insertLineBreak"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Enter",
+   "mods": [
+    "Shift"
+   ]
+  }
+ ]
+}

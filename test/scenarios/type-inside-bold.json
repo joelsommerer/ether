@@ -1,0 +1,30 @@
+{
+ "id": "type-inside-bold",
+ "title": "Typing inside bold text keeps the mark",
+ "tags": [
+  "marks"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world",
+   "m": "11111"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     3
+    ]
+   }
+  },
+  {
+   "text": "x"
+  }
+ ]
+}

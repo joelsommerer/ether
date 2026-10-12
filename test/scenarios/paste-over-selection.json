@@ -1,0 +1,36 @@
+{
+ "id": "paste-over-selection",
+ "title": "Pasting replaces a selection",
+ "tags": [
+  "plain",
+  "paste"
+ ],
+ "covers": [
+  "insertFromPaste"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ],
+    "focus": [
+     0,
+     14
+    ]
+   }
+  },
+  {
+   "paste": {
+    "text": "all"
+   }
+  }
+ ]
+}

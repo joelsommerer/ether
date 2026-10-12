@@ -1,0 +1,34 @@
+{
+ "id": "backspace-first-block",
+ "title": "Backspace at the start of the first block",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  },
+  {
+   "t": "p",
+   "s": "world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "id": "markdown-rule-backspace",
+ "title": "Backspace right after an input rule fired",
+ "tags": [
+  "structural"
+ ],
+ "covers": [
+  "insertText",
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "text": "## "
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

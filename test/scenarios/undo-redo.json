@@ -1,0 +1,37 @@
+{
+ "id": "undo-redo",
+ "title": "Undo then redo after typing",
+ "tags": [
+  "plain",
+  "history"
+ ],
+ "covers": [
+  "historyUndo",
+  "historyRedo"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello "
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     6
+    ]
+   }
+  },
+  {
+   "text": "abc"
+  },
+  {
+   "undo": true
+  },
+  {
+   "redo": true
+  }
+ ]
+}

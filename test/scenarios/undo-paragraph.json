@@ -1,0 +1,38 @@
+{
+ "id": "undo-paragraph",
+ "title": "Undo after Enter and typing",
+ "tags": [
+  "plain",
+  "history",
+  "structural"
+ ],
+ "covers": [
+  "insertParagraph",
+  "historyUndo"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Enter"
+  },
+  {
+   "text": "x"
+  },
+  {
+   "undo": true
+  }
+ ]
+}

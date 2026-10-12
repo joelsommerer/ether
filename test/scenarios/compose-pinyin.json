@@ -1,0 +1,29 @@
+{
+ "id": "compose-pinyin",
+ "title": "Pinyin composition",
+ "tags": [
+  "plain",
+  "composition"
+ ],
+ "covers": [
+  "insertCompositionText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "compose": [
+    "z",
+    "zh",
+    "zho",
+    "zhon",
+    "zhong"
+   ],
+   "commit": "中"
+  }
+ ]
+}

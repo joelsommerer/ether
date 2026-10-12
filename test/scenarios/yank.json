@@ -1,0 +1,47 @@
+{
+ "id": "yank",
+ "title": "Control+K kills, Control+Y yanks (macOS)",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "insertFromYank",
+  "deleteHardLineForward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "k",
+   "mods": [
+    "Control"
+   ]
+  },
+  {
+   "select": {
+    "anchor": [
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "key": "y",
+   "mods": [
+    "Control"
+   ]
+  }
+ ]
+}

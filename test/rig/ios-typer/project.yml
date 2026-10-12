@@ -1,0 +1,38 @@
+# XcodeGen spec of the iOS input runner (piece E1-002). The generated
+# EtherTyper.xcodeproj is committed, so running the rig needs Xcode only;
+# regenerate with `xcodegen generate` after changing this file.
+name: EtherTyper
+options:
+  bundleIdPrefix: local.ether.rig
+  deploymentTarget:
+    iOS: "26.0"
+settings:
+  base:
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+    GENERATE_INFOPLIST_FILE: YES
+    SWIFT_VERSION: "5.0"
+targets:
+  TyperHost:
+    type: application
+    platform: iOS
+    sources: [Host]
+    settings:
+      base:
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+  TyperUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    dependencies:
+      - target: TyperHost
+    settings:
+      base:
+        TEST_TARGET_NAME: TyperHost
+schemes:
+  TyperUITests:
+    build:
+      targets:
+        TyperUITests: all
+    test:
+      targets: [TyperUITests]

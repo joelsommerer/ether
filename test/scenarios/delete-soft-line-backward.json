@@ -1,0 +1,32 @@
+{
+ "id": "delete-soft-line-backward",
+ "title": "Mod+Backspace deletes to the start of the line",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteSoftLineBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     18
+    ]
+   }
+  },
+  {
+   "key": "Backspace",
+   "mods": [
+    "Mod"
+   ]
+  }
+ ]
+}

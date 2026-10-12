@@ -1,0 +1,36 @@
+{
+ "id": "paste-as-quotation-attempt",
+ "title": "Attempt to paste as quotation (insertFromPasteAsQuotation)",
+ "tags": [
+  "paste"
+ ],
+ "covers": [
+  "insertFromPaste",
+  "insertFromPasteAsQuotation"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello "
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     6
+    ]
+   }
+  },
+  {
+   "paste": {
+    "text": "q"
+   }
+  },
+  {
+   "shortcut": "Alt+Shift+Mod+V"
+  }
+ ],
+ "note": "Paste as Quotation has no default binding in a browser editing host; the coverage table records what the target emitted."
+}

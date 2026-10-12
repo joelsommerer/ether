@@ -1,0 +1,30 @@
+{
+ "id": "select-dom-path",
+ "title": "Selection by DOM path, then typing",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchorPath": [
+     0,
+     0
+    ],
+    "anchorOffset": 6
+   }
+  },
+  {
+   "text": "big "
+  }
+ ]
+}

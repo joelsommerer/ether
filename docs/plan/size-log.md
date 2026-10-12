@@ -23,3 +23,4 @@ Bytes of `dist/blank.html` per measurement (written by `tools/size.mjs`). New ro
 |---|---|---|---|---|---|
 | 2026-10-11 | E1-001 | 662 | 2048 | ok | 3bcefc342680 |
 | 2026-10-11 | E1-003 | 7811 | 9216 | ok | bfbe338db708 |
+| 2026-10-11 | adhoc | 7811 | 2048 | over | bfbe338db708 |

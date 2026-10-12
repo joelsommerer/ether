@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" data-subject="stub">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Broken stub</title>
+<link rel="icon" href="data:,">
+<style>
+  body { margin: 0; padding: 16px; font: 16px/1.5 system-ui, sans-serif; background: #fff; color: #000; }
+  #stub { min-height: 8em; padding: 8px; border: 1px solid #888; outline: none; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<!-- Planted bug for the rig's self-test (piece E1-002): identical to the
+     native oracle, except that every Backspace also drops each "ü" (U+00FC)
+     from the text node that holds the caret. The fuzzer must find this
+     against bench/oracle/native.html and shrink it to <= 5 steps. -->
+<div id="stub" contenteditable="true"><p><br></p></div>
+<script src="../oracle/recorder.js"></script>
+<script>
+  document.getElementById('stub').addEventListener('input', (e) => {
+    if (e.inputType !== 'deleteContentBackward') return;
+    const sel = getSelection();
+    const node = sel && sel.anchorNode;
+    if (!node || node.nodeType !== 3 || !node.data.includes('ü')) return;
+    const before = node.data.slice(0, sel.anchorOffset).split('ü').length - 1;
+    const caret = sel.anchorOffset - before;
+    node.data = node.data.replace(/ü/g, '');
+    sel.collapse(node, caret);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+ "id": "list-enter-empty-last",
+ "title": "Enter in an empty last list item",
+ "tags": [
+  "structural"
+ ],
+ "covers": [
+  "insertParagraph"
+ ],
+ "init": [
+  {
+   "t": "li",
+   "s": "one"
+  },
+  {
+   "t": "li",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     1,
+     0
+    ]
+   }
+  },
+  {
+   "key": "Enter"
+  },
+  {
+   "text": "p"
+  }
+ ]
+}

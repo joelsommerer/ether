@@ -1,0 +1,32 @@
+{
+ "id": "delete-word-forward",
+ "title": "Alt+Delete deletes the next word",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteWordForward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Delete",
+   "mods": [
+    "Alt"
+   ]
+  }
+ ]
+}

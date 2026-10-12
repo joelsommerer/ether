@@ -1,0 +1,29 @@
+{
+ "id": "delete-forward-thai",
+ "title": "Delete inside Thai text",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContentForward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "ภาษาไทย"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     2
+    ]
+   }
+  },
+  {
+   "key": "Delete"
+  }
+ ]
+}

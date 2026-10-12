@@ -1,0 +1,37 @@
+{
+ "id": "list-backspace-first",
+ "title": "Backspace at the start of the first list item",
+ "tags": [
+  "structural"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "x"
+  },
+  {
+   "t": "li",
+   "s": "one"
+  },
+  {
+   "t": "li",
+   "s": "two"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     1,
+     0
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

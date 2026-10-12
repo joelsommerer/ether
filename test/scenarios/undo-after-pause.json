@@ -1,0 +1,31 @@
+{
+ "id": "undo-after-pause",
+ "title": "Typing, a 700 ms pause, typing, undo",
+ "tags": [
+  "plain",
+  "history"
+ ],
+ "covers": [
+  "historyUndo"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "text": "ab"
+  },
+  {
+   "wait": 700
+  },
+  {
+   "text": "cd"
+  },
+  {
+   "undo": true
+  }
+ ]
+}

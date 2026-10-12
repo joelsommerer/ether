@@ -1,0 +1,39 @@
+{
+ "id": "cross-block-delete",
+ "title": "Backspace over a selection across two paragraphs",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "deleteContentBackward",
+  "deleteContent"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  },
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ],
+    "focus": [
+     1,
+     4
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

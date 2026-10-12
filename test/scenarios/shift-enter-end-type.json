@@ -1,0 +1,37 @@
+{
+ "id": "shift-enter-end-type",
+ "title": "Shift+Enter at the end, then typing",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "insertLineBreak",
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Enter",
+   "mods": [
+    "Shift"
+   ]
+  },
+  {
+   "text": "x"
+  }
+ ]
+}

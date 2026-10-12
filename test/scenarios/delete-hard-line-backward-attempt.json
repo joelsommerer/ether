@@ -1,0 +1,33 @@
+{
+ "id": "delete-hard-line-backward-attempt",
+ "title": "Attempt to delete to the start of the paragraph (deleteHardLineBackward)",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteHardLineBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     18
+    ]
+   }
+  },
+  {
+   "key": "Backspace",
+   "mods": [
+    "Control"
+   ]
+  }
+ ],
+ "note": "macOS has no default binding for deleteToBeginningOfParagraph; the coverage table records what the target emitted."
+}

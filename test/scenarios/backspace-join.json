@@ -1,0 +1,34 @@
+{
+ "id": "backspace-join",
+ "title": "Backspace at the start of a paragraph joins it",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  },
+  {
+   "t": "p",
+   "s": "world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     1,
+     0
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

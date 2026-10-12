@@ -1,0 +1,33 @@
+{
+ "id": "type-start-second-block",
+ "title": "Typing at the start of the second paragraph",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  },
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     1,
+     0
+    ]
+   }
+  },
+  {
+   "text": "Und "
+  }
+ ]
+}

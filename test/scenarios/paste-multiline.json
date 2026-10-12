@@ -1,0 +1,33 @@
+{
+ "id": "paste-multiline",
+ "title": "Pasting two lines of plain text",
+ "tags": [
+  "plain",
+  "paste",
+  "structural"
+ ],
+ "covers": [
+  "insertFromPaste"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello "
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     6
+    ]
+   }
+  },
+  {
+   "paste": {
+    "text": "one\ntwo"
+   }
+  }
+ ]
+}

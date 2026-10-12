@@ -1,0 +1,34 @@
+{
+ "id": "delete-selection-backward",
+ "title": "Backspace removes a backward selection",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContent",
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     14
+    ],
+    "focus": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

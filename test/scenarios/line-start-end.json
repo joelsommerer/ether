@@ -1,0 +1,45 @@
+{
+ "id": "line-start-end",
+ "title": "Mod+ArrowLeft / Mod+ArrowRight to line start and end",
+ "tags": [
+  "plain",
+  "navigation"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     8
+    ]
+   }
+  },
+  {
+   "key": "ArrowLeft",
+   "mods": [
+    "Mod"
+   ]
+  },
+  {
+   "text": "<"
+  },
+  {
+   "key": "ArrowRight",
+   "mods": [
+    "Mod"
+   ]
+  },
+  {
+   "text": ">"
+  }
+ ]
+}

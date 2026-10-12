@@ -1,0 +1,34 @@
+{
+ "id": "click-second-block",
+ "title": "Click into the second paragraph, then typing",
+ "tags": [
+  "plain",
+  "pointer"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  },
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "click": {
+    "at": [
+     1,
+     4
+    ]
+   }
+  },
+  {
+   "text": "X"
+  }
+ ]
+}

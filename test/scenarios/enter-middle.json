@@ -1,0 +1,30 @@
+{
+ "id": "enter-middle",
+ "title": "Enter in the middle of a paragraph",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "insertParagraph"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Enter"
+  }
+ ]
+}

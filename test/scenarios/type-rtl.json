@@ -1,0 +1,21 @@
+{
+ "id": "type-rtl",
+ "title": "Typing mixed RTL and LTR text (text integrity only)",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": ""
+  }
+ ],
+ "steps": [
+  {
+   "text": "שלום abc עולם"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "id": "delete-hard-line-forward",
+ "title": "Control+K deletes to the end of the paragraph (macOS)",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteHardLineForward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  },
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     10
+    ]
+   }
+  },
+  {
+   "key": "k",
+   "mods": [
+    "Control"
+   ]
+  }
+ ]
+}

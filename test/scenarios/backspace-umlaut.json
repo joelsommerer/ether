@@ -1,0 +1,29 @@
+{
+ "id": "backspace-umlaut",
+ "title": "Backspace deletes an umlaut",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Grüsse"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     3
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

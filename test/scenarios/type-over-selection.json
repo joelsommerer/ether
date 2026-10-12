@@ -1,0 +1,34 @@
+{
+ "id": "type-over-selection",
+ "title": "Typing replaces a selection inside one paragraph",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "insertText",
+  "deleteContent"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ],
+    "focus": [
+     0,
+     14
+    ]
+   }
+  },
+  {
+   "text": "X"
+  }
+ ]
+}

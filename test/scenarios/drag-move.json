@@ -1,0 +1,47 @@
+{
+ "id": "drag-move",
+ "title": "Dragging a selected word to the end of the paragraph",
+ "tags": [
+  "pointer"
+ ],
+ "covers": [
+  "insertFromDrop",
+  "deleteByDrag"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello big world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     6
+    ],
+    "focus": [
+     0,
+     9
+    ]
+   }
+  },
+  {
+   "drag": {
+    "from": {
+     "at": [
+      0,
+      7
+     ]
+    },
+    "to": {
+     "at": [
+      0,
+      15
+     ]
+    }
+   }
+  }
+ ]
+}

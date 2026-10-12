@@ -1,0 +1,34 @@
+{
+ "id": "enter-end",
+ "title": "Enter at the end of a paragraph, then typing",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "insertParagraph",
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Enter"
+  },
+  {
+   "text": "x"
+  }
+ ]
+}

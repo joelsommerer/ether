@@ -1,0 +1,32 @@
+{
+ "id": "delete-forward",
+ "title": "Delete twice at the start of a word",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContentForward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "key": "Delete"
+  },
+  {
+   "key": "Delete"
+  }
+ ]
+}

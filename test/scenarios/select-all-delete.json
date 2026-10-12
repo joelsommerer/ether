@@ -1,0 +1,30 @@
+{
+ "id": "select-all-delete",
+ "title": "Select all, then Backspace",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "deleteContentBackward",
+  "deleteContent"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  },
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "shortcut": "Mod+A"
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

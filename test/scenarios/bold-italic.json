@@ -1,0 +1,37 @@
+{
+ "id": "bold-italic",
+ "title": "Mod+B then Mod+I on the same selection",
+ "tags": [
+  "marks"
+ ],
+ "covers": [
+  "formatBold",
+  "formatItalic"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     0
+    ],
+    "focus": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "shortcut": "Mod+B"
+  },
+  {
+   "shortcut": "Mod+I"
+  }
+ ]
+}

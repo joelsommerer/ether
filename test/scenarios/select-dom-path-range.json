@@ -1,0 +1,35 @@
+{
+ "id": "select-dom-path-range",
+ "title": "Range selection by DOM paths, then typing",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchorPath": [
+     0,
+     0
+    ],
+    "anchorOffset": 0,
+    "focusPath": [
+     0,
+     0
+    ],
+    "focusOffset": 5
+   }
+  },
+  {
+   "text": "Bye"
+  }
+ ]
+}

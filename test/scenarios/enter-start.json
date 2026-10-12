@@ -1,0 +1,30 @@
+{
+ "id": "enter-start",
+ "title": "Enter at the start of a paragraph",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "insertParagraph"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "key": "Enter"
+  }
+ ]
+}

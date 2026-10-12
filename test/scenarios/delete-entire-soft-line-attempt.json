@@ -1,0 +1,34 @@
+{
+ "id": "delete-entire-soft-line-attempt",
+ "title": "Attempt to delete the entire visual line (deleteEntireSoftLine)",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteEntireSoftLine"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     18
+    ]
+   }
+  },
+  {
+   "key": "Backspace",
+   "mods": [
+    "Mod",
+    "Shift"
+   ]
+  }
+ ],
+ "note": "No known key binding emits deleteEntireSoftLine; the coverage table records what the target emitted."
+}

@@ -1,0 +1,34 @@
+{
+ "id": "bold-toggle-off",
+ "title": "Mod+B on bold text removes bold",
+ "tags": [
+  "marks"
+ ],
+ "covers": [
+  "formatBold"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world",
+   "m": "11111"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     0
+    ],
+    "focus": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "shortcut": "Mod+B"
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "id": "click-then-type",
+ "title": "Click at a character position, then typing",
+ "tags": [
+  "plain",
+  "pointer"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello world"
+  }
+ ],
+ "steps": [
+  {
+   "click": {
+    "at": [
+     0,
+     2
+    ]
+   }
+  },
+  {
+   "text": "X"
+  }
+ ]
+}

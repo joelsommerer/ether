@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" data-subject="native">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Native contenteditable oracle</title>
+<link rel="icon" href="data:,">
+<style>
+  body { margin: 0; padding: 16px; font: 16px/1.5 system-ui, sans-serif; background: #fff; color: #000; }
+  #oracle { min-height: 8em; padding: 8px; border: 1px solid #888; outline: none; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<!-- Bar B1 (PHASE-1.md section 7): a plain contenteditable with browser
+     defaults. recorder.js records text, caret and input events after every
+     step; the page itself adds no editing behaviour. -->
+<div id="oracle" contenteditable="true"><p><br></p></div>
+<script src="recorder.js"></script>
+</body>
+</html>

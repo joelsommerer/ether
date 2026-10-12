@@ -32,22 +32,28 @@ npm run hooks                            # once per clone: use tools/hooks (comm
 | `npm run size -- --piece <ID>` | `tools/size.mjs`: bytes of `dist/blank.html` against the piece's `ceiling_kb` (1 KB = 1024 B); appends to `docs/plan/size-log.md` — gate G8. |
 | `npm run fixtures` | `tools/fixtures.mjs`: regenerates the conformance ledgers in `test/fixtures/ledgers/` and their `expected.json` (deterministic); `-- --check` fails if the committed files are stale. |
 | `npm run serve` | `tools/serve.mjs`: static server on `http://127.0.0.1:4173` for `/dist/` and `/bench/` (`--port`, `--host`). |
+| `npm run rig -- corpus\|fuzz\|planted\|summary [--targets all\|desktop\|mobile\|<list>]` | `tools/rig.mjs`: the measurement rig (piece E1-002). Drives the scenario corpus (`test/scenarios/`), seeded fuzz sequences and the planted-bug self-test against the native contenteditable oracle (B1), the ProseMirror basic example (B2) and our document on all five targets; reports in `test-results/rig/`. Details, scenario DSL and invariants I1–I8: [`test/README.md`](test/README.md). |
+| `npm run devices -- up\|down\|status` | `tools/devices.mjs`: creates/boots/shuts down only the iOS simulator "Ether iPhone 17 Pro" and the AVD "ether" (headless); proves every other simulator and AVD unchanged. |
 | `npm run gates -- --piece <ID> [--targets all\|desktop\|mobile\|<list>] [--gates G1,..]` | `tools/gates.mjs`: builds, runs the piece's gates and prints the G1–G12 table (green / red / not-checked / n.a.); exit code ≠ 0 when a relevant gate is red or not-checked. Report in `test-results/gates/<ID>.json`. |
 | `npm run hooks` | Sets `core.hooksPath` to `tools/hooks`; `commit-msg` rejects `Co-Authored-By:` and `Generated with` lines. |
 
-Targets: `chromium`, `firefox`, `webkit` (desktop, Playwright) and `ios-safari`, `android-chrome` (mobile, from E1-002). `--targets all` runs the targets that the piece's `verify` field names; a target without a driver is reported as not-checked, never green.
+Targets: `chromium`, `firefox`, `webkit` (desktop, Playwright) and `ios-safari` (Safari on the simulator "Ether iPhone 17 Pro": Web Inspector socket for scripts, XCUITest for taps and typing), `android-chrome` (Chrome on the AVD "ether" over CDP) — drivers in `test/rig/drivers/` (E1-002). `--targets all` runs the targets that the piece's `verify` field names; a target without a driver, or a step its driver cannot perform, is reported as not-checked, never green. G4 (desktop) and G6 (mobile) run the scenario corpus through the rig, G5 and the fuzz part of G6 fuzz our document once it has an editing surface; the gate table is followed by one summary line per rig report.
+
+Mobile prerequisites: Xcode with the iOS 26.5 simulator runtime (the rig builds its XCUITest input runner `test/rig/ios-typer` on first use); the Android SDK with `system-images;android-36;google_apis;arm64-v8a`. `safaridriver` (X-01, X-02) is only needed for `ETHER_IOS_DRIVER=webdriver`, which reproduces the finding that WebDriver key input inserts no text on iOS. Known limit: on the iOS simulator keys with a modifier, forward Delete, shortcuts, undo/redo and paste are unsupported-by-driver while the Simulator's hardware keyboard is disconnected — see [`docs/adr/0004-measurement-rig.md`](docs/adr/0004-measurement-rig.md).
 
 ## Layout
 
 ```
 src/            engine modules (JSDoc), style.css, template.html
                 format core (E1-003): sha256.js, canon.js, model.js, ledger.js
-tools/          build, minify, lint, size, gates, serve (+ hooks/commit-msg)
+tools/          build, minify, lint, size, gates, serve, rig, devices (+ hooks/commit-msg)
 test/unit/      node --test
 test/e2e/       Playwright (desktop targets)
+test/rig/       measurement rig (E1-002): drivers, runner, invariants I1-I8, fuzz, shrinker, reports
+test/scenarios/ scenario corpus (DSL in test/README.md); regressions/: shrunk failing seeds
 test/fixtures/  inputs for the tool tests; ledgers/: format v0 conformance ledgers
 test/helpers/   shared generators for the property tests
-bench/          oracles, fixtures and stubs for the measurement rig (E1-002)
+bench/          oracle (native.html + recorder.js), stubs (planted bug), design prototype
 docs/           SPEC.md, adr/, plan/
 dist/           build output (gitignored; release artifacts are attached to tags)
 ```
@@ -73,6 +79,7 @@ CI duration: not yet measured — the first run happens when E1-001 is committed
 - Phase 1 plan: [`docs/plan/PHASE-1.md`](docs/plan/PHASE-1.md), pieces in [`docs/plan/pieces/`](docs/plan/pieces/)
 - Format specification: [`docs/SPEC.md`](docs/SPEC.md) — ledger format v0 (`webdoc/0`), ops, canonical JSON, hashing, verification, replay (piece E1-003); decisions in [`docs/adr/0003-ledger-format-v0.md`](docs/adr/0003-ledger-format-v0.md)
 - Fluid design proposal: [`docs/adr/0002-fluid-design.md`](docs/adr/0002-fluid-design.md) (piece E1-004, status proposed until Joel approves it, X-03); prototype in `bench/design/`
+- Measurement rig: [`test/README.md`](test/README.md) — targets and drivers, scenario DSL, invariants I1–I8 (piece E1-002); decisions in [`docs/adr/0004-measurement-rig.md`](docs/adr/0004-measurement-rig.md)
 - Architecture decisions: [`docs/adr/`](docs/adr/)
 - Size log: [`docs/plan/size-log.md`](docs/plan/size-log.md)
 

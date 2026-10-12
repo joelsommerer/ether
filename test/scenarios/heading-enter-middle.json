@@ -1,0 +1,29 @@
+{
+ "id": "heading-enter-middle",
+ "title": "Enter in the middle of a heading",
+ "tags": [
+  "structural"
+ ],
+ "covers": [
+  "insertParagraph"
+ ],
+ "init": [
+  {
+   "t": "h2",
+   "s": "Die Verwandlung"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     3
+    ]
+   }
+  },
+  {
+   "key": "Enter"
+  }
+ ]
+}

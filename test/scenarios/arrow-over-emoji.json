@@ -1,0 +1,36 @@
+{
+ "id": "arrow-over-emoji",
+ "title": "ArrowLeft over a ZWJ emoji moves by one grapheme",
+ "tags": [
+  "plain",
+  "navigation"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "a👩‍👩‍👧b"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     9
+    ]
+   }
+  },
+  {
+   "key": "ArrowLeft"
+  },
+  {
+   "key": "ArrowLeft"
+  },
+  {
+   "text": "|"
+  }
+ ]
+}

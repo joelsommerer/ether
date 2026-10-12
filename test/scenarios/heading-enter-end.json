@@ -1,0 +1,37 @@
+{
+ "id": "heading-enter-end",
+ "title": "Enter at the end of a heading, then typing",
+ "tags": [
+  "structural"
+ ],
+ "covers": [
+  "insertParagraph",
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "h1",
+   "s": "Title"
+  },
+  {
+   "t": "p",
+   "s": "Body"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Enter"
+  },
+  {
+   "text": "x"
+  }
+ ]
+}

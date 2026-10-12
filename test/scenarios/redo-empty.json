@@ -1,0 +1,30 @@
+{
+ "id": "redo-empty",
+ "title": "Redo with an empty redo stack",
+ "tags": [
+  "plain",
+  "history"
+ ],
+ "covers": [
+  "historyRedo"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "redo": true
+  }
+ ]
+}

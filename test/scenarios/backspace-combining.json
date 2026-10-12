@@ -1,0 +1,29 @@
+{
+ "id": "backspace-combining",
+ "title": "Backspace after a letter with a combining mark",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "café!"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

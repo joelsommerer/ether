@@ -1,0 +1,32 @@
+{
+ "id": "heading-shortcut",
+ "title": "Shift+Control+2 (ProseMirror example: heading 2)",
+ "tags": [
+  "structural"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "item"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     2
+    ]
+   }
+  },
+  {
+   "shortcut": "Shift+Control+2"
+  },
+  {
+   "text": "x"
+  }
+ ]
+}

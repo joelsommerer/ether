@@ -1,0 +1,34 @@
+{
+ "id": "delete-join",
+ "title": "Delete at the end of a paragraph joins the next",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "deleteContentForward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  },
+  {
+   "t": "p",
+   "s": "world"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Delete"
+  }
+ ]
+}

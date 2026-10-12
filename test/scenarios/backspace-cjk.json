@@ -1,0 +1,29 @@
+{
+ "id": "backspace-cjk",
+ "title": "Backspace in CJK text",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "漢字かな"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     2
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

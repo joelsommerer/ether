@@ -1,0 +1,32 @@
+{
+ "id": "backspace-end",
+ "title": "Backspace twice at the end of a word",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContentBackward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Backspace"
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

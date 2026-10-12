@@ -1,0 +1,47 @@
+{
+ "id": "planted-ue-chromium",
+ "title": "Planted bug (bench/stubs/broken.html) found by the fuzzer on chromium, shrunk from 46 steps",
+ "tags": [
+  "regression",
+  "plain"
+ ],
+ "covers": [
+  "deleteContentBackward",
+  "insertText"
+ ],
+ "origin": {
+  "kind": "planted",
+  "target": "chromium",
+  "seed": 1,
+  "step": 45,
+  "originalLength": 144,
+  "shrinkRuns": 33,
+  "detail": "text [\"The quick brown fox\",\"jumps over the lazy dog.\",\"one\",\"two\"] != native [\"The quick brown fox\",\"jumps over the lazy dog.\",\"one\",\"twoü\"]"
+ },
+ "init": [
+  {
+   "t": "p",
+   "s": "The quick brown fox"
+  },
+  {
+   "t": "p",
+   "s": "jumps over the lazy dog."
+  },
+  {
+   "t": "li",
+   "s": "one"
+  },
+  {
+   "t": "li",
+   "s": "two"
+  }
+ ],
+ "steps": [
+  {
+   "text": "üb"
+  },
+  {
+   "key": "Backspace"
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "id": "enter-twice",
+ "title": "Enter twice creates an empty paragraph",
+ "tags": [
+  "plain",
+  "structural"
+ ],
+ "covers": [
+  "insertParagraph",
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ]
+   }
+  },
+  {
+   "key": "Enter"
+  },
+  {
+   "key": "Enter"
+  },
+  {
+   "text": "z"
+  }
+ ]
+}

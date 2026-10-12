@@ -1,0 +1,32 @@
+{
+ "id": "click-xy-then-type",
+ "title": "Click at fixed coordinates inside the editing root, then typing",
+ "tags": [
+  "plain",
+  "pointer"
+ ],
+ "covers": [
+  "insertText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  },
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "click": {
+    "x": 12,
+    "y": 12
+   }
+  },
+  {
+   "text": "X"
+  }
+ ]
+}

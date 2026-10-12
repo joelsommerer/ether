@@ -1,0 +1,43 @@
+{
+ "id": "compose-replace-selection",
+ "title": "Composition replacing a cross-block selection",
+ "tags": [
+  "plain",
+  "composition",
+  "structural"
+ ],
+ "covers": [
+  "insertCompositionText"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Omit needless words."
+  },
+  {
+   "t": "p",
+   "s": "Als Gregor Samsa eines Morgens erwachte."
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     5
+    ],
+    "focus": [
+     1,
+     4
+    ]
+   }
+  },
+  {
+   "compose": [
+    "n",
+    "ñ"
+   ],
+   "commit": "ñ"
+  }
+ ]
+}

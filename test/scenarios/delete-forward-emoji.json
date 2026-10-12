@@ -1,0 +1,29 @@
+{
+ "id": "delete-forward-emoji",
+ "title": "Delete before a ZWJ emoji",
+ "tags": [
+  "plain"
+ ],
+ "covers": [
+  "deleteContentForward"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "a👩‍👩‍👧b"
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "key": "Delete"
+  }
+ ]
+}

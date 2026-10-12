@@ -14,6 +14,7 @@ import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { digestLines, readReports, summaryLine } from '../test/rig/report.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const GATES = ['G1', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7', 'G8', 'G9', 'G10', 'G11', 'G12'];
@@ -63,6 +64,111 @@ const lastLine = (output, n = 1) => output.trim().split('\n').slice(-n).join(' |
 /** @param {string} reason @returns {Result} */
 const notChecked = (reason) => ({ status: 'not-checked', detail: reason });
 
+/**
+ * Judges one target's corpus report (test/rig): red on rig errors, page
+ * errors in our document, a violated invariant, a missed planted bug or a
+ * ProseMirror run that broke; not-checked when the driver could not perform
+ * a step (incomplete) or failed its keyboard probe; green otherwise.
+ * @param {any} rep
+ * @returns {{status: Status, detail: string}}
+ */
+function judgeCorpus(rep) {
+  if (rep.error) return { status: 'not-checked', detail: `driver: ${rep.error}` };
+  const red = [];
+  const nc = [];
+  if (rep.errors.length) red.push(`${rep.errors.length} rig error(s), first: ${rep.errors[0].scenario}/${rep.errors[0].subject}: ${rep.errors[0].reason}`);
+  if (rep.native.error || rep.native['not-run']) red.push(`native error/not-run ${rep.native.error}/${rep.native['not-run']}`);
+  if (rep.pm && (rep.pm.error || rep.pm['not-run'])) red.push(`ProseMirror error/not-run ${rep.pm.error}/${rep.pm['not-run']}`);
+  const oursBad = rep.ours.filter((/** @type {any} */ o) => !o.loaded || o.errors?.length || o.checks?.some((/** @type {any} */ c) => c.status === 'fail'));
+  if (oursBad.length) red.push(`our document: ${oursBad.map((/** @type {any} */ o) => o.variant).join(', ')} failed to load cleanly`);
+  const missed = rep.planted.filter((/** @type {any} */ p) => !p.detected);
+  const keyboardDown = rep.keyboard && !rep.keyboard.ok;
+  // Without a working keyboard the planted regressions cannot type "ü":
+  // a driver limitation (not-checked), not a blind rig (red).
+  if (missed.length) (keyboardDown ? nc : red).push(`planted bug not detected in ${missed.map((/** @type {any} */ p) => p.scenario).join(', ')}${keyboardDown ? ' (no keyboard)' : ''}`);
+  for (const r of rep.results) {
+    for (const [subject, t] of Object.entries(r.subjects)) {
+      const fails = (/** @type {any} */ (t).checks ?? []).flat().filter((/** @type {any} */ c) => c.status === 'fail');
+      if (fails.length) red.push(`${r.id}/${subject}: ${fails[0].id} ${fails[0].detail}`);
+    }
+  }
+  if (keyboardDown) nc.unshift(`keyboard probe failed (${rep.keyboard.detail})`);
+  if (rep.unsupported.length) {
+    /** @type {Record<string, number>} */
+    const kinds = {};
+    for (const u of rep.unsupported) kinds[u.kind] = (kinds[u.kind] ?? 0) + 1;
+    nc.push(`incomplete: ${rep.unsupported.length} step(s) unsupported-by-driver (${Object.entries(kinds).map(([k, n]) => `${k} ${n}`).join(', ')})`);
+  }
+  const ours = rep.ours.length
+    ? `ours ${rep.ours.filter((/** @type {any} */ o) => o.loaded).length}/${rep.ours.length} variants loaded${rep.oursChecksActive ? ', I1-I8 active' : ', no editing surface yet: I1-I8 inactive'}`
+    : 'ours not probed';
+  const base = `${rep.counts.run} scenarios, native ${rep.native.complete}/${rep.native.incomplete}/${rep.native.error}${rep.pm ? `, pm ${rep.pm.complete}/${rep.pm.incomplete}/${rep.pm.error}` : ''} (complete/incomplete/error), ${ours}, planted control ${rep.planted.length - missed.length}/${rep.planted.length}`;
+  if (red.length) return { status: 'red', detail: `${base}; ${red.join('; ')}` };
+  if (nc.length) return { status: 'not-checked', detail: `${base}; ${nc.join('; ')}` };
+  return { status: 'green', detail: base };
+}
+
+/**
+ * Runs the rig corpus (tools/rig.mjs) on `targets` and judges each report.
+ * @param {Ctx} ctx @param {string[]} targets @param {string} gate
+ * @returns {Result}
+ */
+function rigCorpus(ctx, targets, gate) {
+  if (!ctx.built) return { status: 'red', detail: `build failed: ${ctx.buildError}` };
+  if (resolve(ctx.distDir) !== join(ROOT, 'dist')) return notChecked(`${gate} runs against dist/ only`);
+  if (!targets.length) return notChecked('no target of this gate selected');
+  const t0 = Date.now();
+  const r = exec([process.execPath, 'tools/rig.mjs', 'corpus', '--targets', targets.join(',')]);
+  const reports = readReports();
+  /** @type {Record<string, Status>} */
+  const st = {};
+  const details = [];
+  for (const t of targets) {
+    const rep = reports[`corpus-${t}`];
+    if (!rep || Date.parse(rep.startedAt) < t0 - 1000) {
+      st[t] = 'red';
+      details.push(`${t} red (no fresh report: ${lastLine(r.output, 3)})`);
+      continue;
+    }
+    const j = judgeCorpus(rep);
+    st[t] = j.status;
+    details.push(`${t} ${j.status} (${j.detail})`);
+  }
+  const values = Object.values(st);
+  const status = values.includes('red') ? 'red' : values.includes('not-checked') ? 'not-checked' : 'green';
+  return { status, detail: `${details.join(' | ')}; reports: test-results/rig/corpus-<target>.md`, output: r.output, targets: st };
+}
+
+/**
+ * Fuzz differential on our document (tools/rig.mjs fuzz --subject ours-min-http).
+ * Inactive while our document has no editing surface.
+ * @param {Ctx} ctx @param {string[]} targets @param {number} count
+ * @returns {Result}
+ */
+function rigFuzz(ctx, targets, count) {
+  if (!ctx.built) return { status: 'red', detail: `build failed: ${ctx.buildError}` };
+  if (resolve(ctx.distDir) !== join(ROOT, 'dist')) return notChecked('fuzz runs against dist/ only');
+  if (!targets.length) return notChecked('no target of this gate selected');
+  const t0 = Date.now();
+  const r = exec([process.execPath, 'tools/rig.mjs', 'fuzz', '--subject', 'ours-min-http', '--count', String(count), '--targets', targets.join(',')]);
+  const reports = readReports();
+  /** @type {Record<string, Status>} */
+  const st = {};
+  const details = [];
+  for (const t of targets) {
+    const rep = reports[`fuzz-${t}-ours-min-http`];
+    if (!rep || Date.parse(rep.startedAt) < t0 - 1000) { st[t] = 'red'; details.push(`${t} red (no fresh report: ${lastLine(r.output, 3)})`); continue; }
+    if (rep.error || rep.inactive) { st[t] = 'not-checked'; details.push(`${t} not-checked (${rep.error ?? rep.inactive})`); continue; }
+    const v = Object.values(rep.violations).reduce((a, n) => a + Number(n), 0);
+    const s = rep.statuses.error || v ? 'red' : rep.steps.unsupported || (rep.keyboard && !rep.keyboard.ok) ? 'not-checked' : 'green';
+    st[t] = s;
+    details.push(`${t} ${s} (${summaryLine(rep)})`);
+  }
+  const values = Object.values(st);
+  const status = values.includes('red') ? 'red' : values.includes('not-checked') ? 'not-checked' : 'green';
+  return { status, detail: details.join(' | '), output: r.output, targets: st };
+}
+
 /** @type {Record<string, (ctx: Ctx) => Result>} */
 const RUNNERS = {
   G1() {
@@ -82,9 +188,34 @@ const RUNNERS = {
     const fail = /# fail (\d+)/.exec(r.output)?.[1] ?? '?';
     return { status: r.ok ? 'green' : 'red', detail: `node --test: ${pass} passed, ${fail} failed`, output: r.output };
   },
-  G4: () => notChecked('no scenario corpus yet (arrives with E1-002)'),
-  G5: () => notChecked('no fuzz driver yet (arrives with E1-002)'),
-  G6: () => notChecked('no mobile drivers yet (arrive with E1-002)'),
+  G4: (ctx) => rigCorpus(ctx, ctx.targets.filter((t) => DESKTOP.includes(t)), 'G4'),
+  G5: (ctx) => rigFuzz(ctx, ctx.targets.filter((t) => DESKTOP.includes(t)), 10_000),
+  G6(ctx) {
+    const mobile = ctx.targets.filter((t) => MOBILE.includes(t));
+    if (!mobile.length) return notChecked('no target of this gate selected');
+    if (resolve(ctx.distDir) !== join(ROOT, 'dist')) return notChecked('G6 runs against dist/ only');
+    // Bring the Ether devices up once for both rig runs; restore their state afterwards.
+    const flag = mobile.length === 2 ? [] : [mobile[0] === 'ios-safari' ? '--ios-only' : '--android-only'];
+    const st = exec([process.execPath, 'tools/devices.mjs', 'status']);
+    const was = (() => { try { return JSON.parse(st.output.slice(st.output.indexOf('{'))); } catch { return null; } })();
+    const wasUp = (/** @type {string} */ t) => (t === 'ios-safari' ? was?.ios?.state === 'Booted' : !!was?.android?.running);
+    const boot = mobile.filter((t) => !wasUp(t));
+    let devices = '';
+    if (boot.length) {
+      const up = exec([process.execPath, 'tools/devices.mjs', 'up', ...flag]);
+      devices = `devices up: ${lastLine(up.output)}`;
+    }
+    try {
+      const corpus = rigCorpus(ctx, mobile, 'G6');
+      if (corpus.status === 'red') return corpus;
+      const fuzz = rigFuzz(ctx, mobile, 1000);
+      const order = ['red', 'not-checked', 'green'];
+      const status = /** @type {Status} */ (order.find((s) => s === corpus.status || s === fuzz.status) ?? 'green');
+      return { status, detail: `corpus: ${corpus.detail} || fuzz 1000 on ours: ${fuzz.detail}${devices ? ` || ${devices}` : ''}`, output: `${corpus.output ?? ''}\n${fuzz.output ?? ''}`, targets: corpus.targets };
+    } finally {
+      for (const t of boot) exec([process.execPath, 'tools/devices.mjs', 'down', t === 'ios-safari' ? '--ios-only' : '--android-only']);
+    }
+  },
   G7: () => notChecked('no round-trip suite yet (arrives with E1-005/E1-013)'),
   G8(ctx) {
     if (!ctx.built) return { status: 'red', detail: `build failed: ${ctx.buildError}` };
@@ -116,7 +247,7 @@ const RUNNERS = {
     const status = values.length === 0 ? 'not-checked'
       : values.includes('red') ? 'red'
       : values.includes('not-checked') ? 'not-checked' : 'green';
-    const detail = Object.entries(targets).map(([t, s]) => `${t} ${s}${MOBILE.includes(t) ? ' (no driver until E1-002)' : ''}`).join(', ') || 'no targets';
+    const detail = Object.entries(targets).map(([t, s]) => `${t} ${s}${MOBILE.includes(t) ? ' (shell CSP suite has no mobile driver)' : ''}`).join(', ') || 'no targets';
     return { status, detail, output, targets };
   },
   G12(ctx) {
@@ -233,6 +364,14 @@ function main() {
   }
   for (const r of rows.filter((x) => x.status === 'red' && x.output)) {
     console.log(`\n--- ${r.gate} output (last 40 lines)\n${(r.output ?? '').trim().split('\n').slice(-40).join('\n')}`);
+  }
+
+  const rig = readReports();
+  const rigNames = Object.keys(rig).filter((n) => targets.some((t) => n.includes(t))).sort();
+  if (rigNames.length && rows.some((r) => r.relevant && ['G4', 'G5', 'G6'].includes(r.gate))) {
+    console.log('\nrig reports (test-results/rig/, newest run per suite and target):');
+    for (const n of rigNames) console.log(`  ${summaryLine(rig[n])}${rig[n].startedAt ? ` [${rig[n].startedAt}]` : ''}`);
+    for (const l of digestLines(rig)) console.log(`  ${l}`);
   }
 
   const red = rows.filter((r) => r.relevant && r.status === 'red').map((r) => r.gate);

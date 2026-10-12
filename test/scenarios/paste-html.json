@@ -1,0 +1,33 @@
+{
+ "id": "paste-html",
+ "title": "Pasting text/html with bold",
+ "tags": [
+  "paste",
+  "marks"
+ ],
+ "covers": [
+  "insertFromPaste"
+ ],
+ "init": [
+  {
+   "t": "p",
+   "s": "Hello "
+  }
+ ],
+ "steps": [
+  {
+   "select": {
+    "anchor": [
+     0,
+     6
+    ]
+   }
+  },
+  {
+   "paste": {
+    "text": "bold",
+    "html": "<b>bold</b>"
+   }
+  }
+ ]
+}
